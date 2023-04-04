@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2NgkzDzxxEDc1XZgd3FMFINzG2h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "spring",
+    "spring.configuration.checksum": "51447c19cedd3bddd62e7e6f73f056d8"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\drago\IdeaProjects\lab-4-sarbudragos" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SdiLab1Application">
+    <configuration name="SdiLab1ApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab-4-sarbudragos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.sdilab1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.sdilab1" />
+      <option name="MAIN_CLASS_NAME" value="com.example.sdilab1.SdiLab1ApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SdiLab1ApplicationTests.studentController_getAllStudentsWithAverageGradeBiggerThan_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="lab-4-sarbudragos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.sdilab1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.sdilab1" />
+      <option name="MAIN_CLASS_NAME" value="com.example.sdilab1.SdiLab1ApplicationTests" />
+      <option name="METHOD_NAME" value="studentController_getAllStudentsWithAverageGradeBiggerThan_success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SdiLab1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="lab-4-sarbudragos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sdilab1.SdiLab1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SdiLab1ApplicationTests" />
+        <item itemvalue="JUnit.SdiLab1ApplicationTests.studentController_getAllStudentsWithAverageGradeBiggerThan_success" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="" />
+      <created>1680093372874</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680093372874</updated>
+      <workItem from="1680093375150" duration="7792000" />
+      <workItem from="1680114429534" duration="14611000" />
+      <workItem from="1680174439917" duration="3144000" />
+      <workItem from="1680181930680" duration="3693000" />
+      <workItem from="1680446106296" duration="4349000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1680096000355</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680096000355</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added validations">
+      <created>1680115819198</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680115819199</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added validations">
+      <created>1680131483385</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680131483385</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added bulk add for students in classroom">
+      <created>1680176991541</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1680176991541</updated>
+    </task>
+    <task id="LOCAL-00005" summary="small fix">
+      <created>1680183206479</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680183206479</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1 - Minor change">
+      <created>1680185233977</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680185233977</updated>
+    </task>
+    <task id="LOCAL-00007" summary="2 - add swagger">
+      <created>1680449214557</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680449214557</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="added validations" />
+    <MESSAGE value="added bulk add for students in classroom" />
+    <MESSAGE value="small fix" />
+    <MESSAGE value="1 - Minor change" />
+    <MESSAGE value="2 - add swagger" />
+    <option name="LAST_COMMIT_MESSAGE" value="2 - add swagger" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
