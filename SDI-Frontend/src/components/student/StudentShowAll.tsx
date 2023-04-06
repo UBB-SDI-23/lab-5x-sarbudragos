@@ -1,4 +1,4 @@
-import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell } from "@mui/material";
+import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Student } from "../../models/Student";
@@ -7,27 +7,35 @@ import {TextField} from "@mui/material";
 export const StudentShowAll = () => {
     const [students, setStudents] = useState([])
     const [searched, setSearched] = useState<number>(0);
+    const [loading, setLoading] = useState(false);
 
     const handleTextFieldChange = (event: { target: { value: string; }; }) => {
       setSearched(+event.target.value)
     }
 
     useEffect(() => {
+      setLoading(true);
       fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}`)
       .then((response) => response.json())
       .then(
-        (data) => setStudents(data)
+        (data) => {
+          setStudents(data);
+          setLoading(false);
+        }
       );
-    }, [handleTextFieldChange]);
+    }, [searched]);
 
     
     return (
       <Container>
-        {students.length === 0 && <div>No students.</div>}
-       {students.length > 0 &&
+        <h1>All students</h1>
+        {loading && <CircularProgress />}
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleTextFieldChange}/>
+        {!loading && students.length === 0 && <div>No students.</div>}
+       {!loading && students.length > 0 &&
          <div className="App">
-         <h1>All students</h1>
-         <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleTextFieldChange}/>
+         
+         
          <TableContainer component={Paper}>
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
