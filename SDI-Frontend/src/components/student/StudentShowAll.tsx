@@ -30,7 +30,7 @@ export const StudentShowAll = () => {
       <Container>
         <h1>All students</h1>
         {loading && <CircularProgress />}
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleTextFieldChange}/>
+        <TextField id="outlined-basic" label="Filter by minimum grade" variant="outlined" onChange={handleTextFieldChange}/>
         {!loading && students.length === 0 && <div>No students.</div>}
        {!loading && students.length > 0 &&
          <div className="App">
