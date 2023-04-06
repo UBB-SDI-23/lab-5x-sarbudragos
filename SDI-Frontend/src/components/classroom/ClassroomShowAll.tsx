@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import { Classroom } from "../../models/Classroom"
 import Container from "@mui/material/Container/Container";
-import { IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, Tooltip } from "@mui/material";
+import { IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
 
 export const ClassroomShowAll = () => {
     const [classrooms, setClassroom] = useState([])
+    const [valueToOrderBy, setValueToOrderBy] = useState("name")
+    const [orderDirection, setOrderDirection] = useState("asc")
 
     useEffect(() => {
       fetch("http://35.233.23.137/classrooms")
@@ -15,6 +17,42 @@ export const ClassroomShowAll = () => {
         (data) => setClassroom(data)
       );
     }, []);
+
+    const descendingComparator = (a: any, b: any, orderBy:any) =>{
+      if(b[orderBy] < a[orderBy]){
+        return -1;
+      }
+      if(b[orderBy] > a[orderBy]){
+        return 1;
+      }
+      return 0;
+    }
+
+    const getComparator = (order: any, orderBy: any) => {
+      return order === "desc"
+      ? (a: any,b: any) => descendingComparator(a,b, orderBy)
+      : (a: any,b: any) => -descendingComparator(a,b, orderBy)
+    }
+
+    const handleRequestSort = (event: any, property: SetStateAction<string>) =>{
+      const isAscending = (valueToOrderBy === property && orderDirection === "asc")
+      setValueToOrderBy(property)
+      setOrderDirection(isAscending? "desc" : "asc")
+    }
+
+    const createSortHandler = (property: SetStateAction<string>) => (event: any) =>{
+      handleRequestSort(event, property)
+    }
+
+    const sortedRowInformation = (rowArray: any, comparator: any) => {
+      const stabilizedRowArray = rowArray.map((el: any, index: any) => [el, index])
+      stabilizedRowArray.sort((a: any,b: any) => {
+        const order = comparator(a[0], b[0])
+        if(order !== 0) return order
+        return a[1] - b[1]
+      })
+      return stabilizedRowArray.map((el:any) => el[0])
+    }
     
     
     return (
@@ -36,15 +74,55 @@ export const ClassroomShowAll = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell>#</TableCell>
-								<TableCell align="right">Name</TableCell>
-								<TableCell align="right">Location</TableCell>
-								<TableCell align="right">Capacity</TableCell>
-                <TableCell align="right">Allocated funds</TableCell>
-                <TableCell align="right">Homeroom teacher</TableCell>
+								<TableCell align="right">
+                  <TableSortLabel
+                    active={valueToOrderBy === "name"}
+                    direction={valueToOrderBy === "name" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("name")}
+                  >
+                    Name
+                  </TableSortLabel>
+                </TableCell>
+								<TableCell align="right">
+                <TableSortLabel
+                    active={valueToOrderBy === "location"}
+                    direction={valueToOrderBy === "location" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("location")}
+                  >
+                    Location
+                  </TableSortLabel>
+                </TableCell>
+								<TableCell align="right">
+                <TableSortLabel
+                    active={valueToOrderBy === "capacity"}
+                    direction={valueToOrderBy === "capacity" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("capacity")}
+                  >
+                    Capacity
+                  </TableSortLabel>
+                  </TableCell>
+                <TableCell align="right">
+                <TableSortLabel
+                    active={valueToOrderBy === "allocatedFunds"}
+                    direction={valueToOrderBy === "allocatedFunds" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("allocatedFunds")}
+                  >
+                    Allocated funds
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell align="right">
+                <TableSortLabel
+                    active={valueToOrderBy === "homeroomTeacher"}
+                    direction={valueToOrderBy === "homeroomTeacher" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("homeroomTeacher")}
+                  >
+                    Homeroom teacher
+                  </TableSortLabel>
+                </TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
-           {classrooms.map((classroom: Classroom, index) => (
+           {sortedRowInformation(classrooms, getComparator(orderDirection, valueToOrderBy)).map((classroom: Classroom, index: number) => (
             <TableRow key={classroom.id}>
               <TableCell component="th" scope="row">
                 {index + 1}
