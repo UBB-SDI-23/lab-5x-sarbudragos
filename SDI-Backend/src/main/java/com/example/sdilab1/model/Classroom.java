@@ -12,7 +12,7 @@ import java.util.Objects;
 @Table(name = "Classrooms")
 public class Classroom {
     private @Id
-    @GeneratedValue Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
 
     public Integer getId() {
         return id;

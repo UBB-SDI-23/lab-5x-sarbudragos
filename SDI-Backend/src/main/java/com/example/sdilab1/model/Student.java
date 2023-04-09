@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "Students")
 public class Student {
-    private @Id @GeneratedValue Integer id;
+    private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
 
     @Column
     private String firstName;
