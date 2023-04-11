@@ -4,6 +4,7 @@ import com.example.sdilab1.model.Classroom;
 import com.example.sdilab1.model.ClassroomDTO;
 import com.example.sdilab1.model.Message;
 import com.example.sdilab1.service.ClassroomService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,8 @@ public class ClassroomController {
     }
 
     @GetMapping("/classrooms")
-    public List<Classroom> all() {
-        return service.all();
+    public Page<Classroom> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getPage(pageNumber, pageSize);
     }
 
     @GetMapping("/classrooms/{id}")

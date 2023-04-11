@@ -8,7 +8,7 @@ export const TeacherShowAll = () => {
     const [teachers, setTeachers] = useState([])
 
     useEffect(() => {
-      fetch("http://35.233.23.137/teachers")
+      fetch("http://35.233.23.137/teachers?pageNumber=0&pageSize=5")
       .then((response) => response.json())
       .then(
         (data) => setTeachers(data)

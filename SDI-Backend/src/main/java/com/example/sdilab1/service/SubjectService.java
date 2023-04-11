@@ -2,6 +2,9 @@ package com.example.sdilab1.service;
 
 import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.SubjectRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -22,6 +25,12 @@ public class SubjectService {
     public List<SubjectDTO> all() {
         return subjectRepository.findAll().stream()
                 .map(SubjectDTO::fromSubject).collect(Collectors.toList());
+    }
+
+    public Page<Subject> getPage(Integer pageNumber, Integer pageSize){
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return subjectRepository.findAll(pageable);
     }
 
     public SubjectDTO getById(Integer id) {

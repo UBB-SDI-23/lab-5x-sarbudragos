@@ -15,7 +15,7 @@ export const StudentShowAll = () => {
 
     useEffect(() => {
       setLoading(true);
-      fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}`)
+      fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}&pageNumber=0&pageSize=5`)
       .then((response) => response.json())
       .then(
         (data) => {

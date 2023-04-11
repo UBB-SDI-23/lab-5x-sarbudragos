@@ -1,8 +1,12 @@
 package com.example.sdilab1.service;
 
+import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.Teacher;
 import com.example.sdilab1.model.TeacherDTO;
 import com.example.sdilab1.repository.TeacherRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +24,12 @@ public class TeacherService {
     public List<TeacherDTO> all() {
         return teacherRepository.findAll().stream()
                 .map(TeacherDTO::fromTeacher).collect(Collectors.toList());
+    }
+
+    public Page<Teacher> getPage(Integer pageNumber, Integer pageSize){
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return teacherRepository.findAll(pageable);
     }
 
     public TeacherDTO getById(Integer id) {

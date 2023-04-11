@@ -6,6 +6,10 @@ import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
 import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +29,13 @@ public class ClassroomService {
 
 
     public List<Classroom> all() {
-        return classroomRepository.findAll();
+        return classroomRepository.findTop100ById();
+    }
+
+    public Page<Classroom> getPage(Integer pageNumber, Integer pageSize){
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return classroomRepository.findAll(pageable);
     }
 
 

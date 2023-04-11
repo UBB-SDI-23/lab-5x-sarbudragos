@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect, useState } from "react"
 import { Classroom } from "../../models/Classroom"
 import Container from "@mui/material/Container/Container";
-import { IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
+import { Button, IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
 
@@ -9,9 +9,10 @@ export const ClassroomShowAll = () => {
     const [classrooms, setClassroom] = useState([])
     const [valueToOrderBy, setValueToOrderBy] = useState("name")
     const [orderDirection, setOrderDirection] = useState("asc")
+    const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
-      fetch("http://35.233.23.137/classrooms")
+      fetch("http://35.233.23.137/classrooms?pageNumber=0")
       .then((response) => response.json())
       .then(
         (data) => setClassroom(data)
@@ -158,7 +159,18 @@ export const ClassroomShowAll = () => {
            ))}
            </Table>
          </TableContainer>
+         
        </div>
+       }
+       {pageNumber !== 0 &&
+        <Button onClick={() => {setPageNumber(pageNumber - 1)}}>
+          Previous
+        </Button>
+       }
+       {classrooms.length <= 10 && 
+        <Button onClick={() => {setPageNumber(pageNumber + 1)}}>
+          Next
+        </Button>
        }
       </Container>
         

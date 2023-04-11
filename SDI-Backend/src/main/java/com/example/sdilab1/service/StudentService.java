@@ -1,9 +1,13 @@
 package com.example.sdilab1.service;
 
+import com.example.sdilab1.model.Classroom;
 import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
 import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +27,12 @@ public class StudentService {
 
     public List<Student> all() {
         return studentRepository.findAll();
+    }
+
+    public Page<Student> getPage(Integer pageNumber, Integer pageSize){
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return studentRepository.findAll(pageable);
     }
 
     public StudentDTO getById(Integer id) {
@@ -58,8 +68,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<StudentDTO> getAllStudentsWithAverageGradeBiggerThan(Double grade){
-        return studentRepository.findAll().stream().filter(student -> student.getAverageGrade() > grade )
+    public List<StudentDTO> getAllStudentsWithAverageGradeBiggerThan(Double grade, Integer pageNumber, Integer pageSize){
+        return this.getPage(pageNumber, pageSize).stream().filter(student -> student.getAverageGrade() > grade )
                 .map(StudentDTO::fromStudent).collect(Collectors.toList());
     }
 }

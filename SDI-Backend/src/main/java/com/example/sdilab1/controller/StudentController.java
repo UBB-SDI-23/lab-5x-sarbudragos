@@ -3,6 +3,7 @@ package com.example.sdilab1.controller;
 import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
 import com.example.sdilab1.service.StudentService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    List<Student> all() {
-       return service.all();
+    Page<Student> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+       return service.getPage(pageNumber, pageSize);
     }
 
     @GetMapping("/students/{id}")
@@ -42,8 +43,10 @@ public class StudentController {
     }
 
     @GetMapping(path="/students/grade-filter")
-    public @ResponseBody List<StudentDTO> getAllProductsWithWeightBiggerThan(@RequestParam Double grade) {
-        return service.getAllStudentsWithAverageGradeBiggerThan(grade);
+    public @ResponseBody List<StudentDTO> getAllProductsWithWeightBiggerThan(@RequestParam Double grade,
+                                                                             @RequestParam(defaultValue = "0") Integer pageNumber,
+                                                                             @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getAllStudentsWithAverageGradeBiggerThan(grade, pageNumber, pageSize);
     }
 
 
