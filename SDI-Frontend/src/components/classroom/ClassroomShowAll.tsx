@@ -12,12 +12,12 @@ export const ClassroomShowAll = () => {
     const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
-      fetch("http://35.233.23.137/classrooms?pageNumber=0")
+      fetch(`http://35.233.23.137/classrooms?pageNumber=${pageNumber}`)
       .then((response) => response.json())
       .then(
-        (data) => setClassroom(data)
+        (data) => setClassroom(data.content)
       );
-    }, []);
+    }, [pageNumber]);
 
     const descendingComparator = (a: any, b: any, orderBy:any) =>{
       if(b[orderBy] < a[orderBy]){
@@ -126,7 +126,7 @@ export const ClassroomShowAll = () => {
            {sortedRowInformation(classrooms, getComparator(orderDirection, valueToOrderBy)).map((classroom: Classroom, index: number) => (
             <TableRow key={classroom.id}>
               <TableCell component="th" scope="row">
-                {index + 1}
+                {pageNumber*10 + index + 1}
               </TableCell>
               <TableCell component="th" scope="row">
                 <Link title="View classroom details" to={`/classrooms/${classroom.id}/details`}>

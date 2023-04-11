@@ -1,4 +1,4 @@
-import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell, CircularProgress } from "@mui/material";
+import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell, CircularProgress, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Student } from "../../models/Student";
@@ -8,6 +8,7 @@ export const StudentShowAll = () => {
     const [students, setStudents] = useState([])
     const [searched, setSearched] = useState<number>(0);
     const [loading, setLoading] = useState(false);
+    const [pageNumber, setPageNumber] = useState(0)
 
     const handleTextFieldChange = (event: { target: { value: string; }; }) => {
       setSearched(+event.target.value)
@@ -15,7 +16,7 @@ export const StudentShowAll = () => {
 
     useEffect(() => {
       setLoading(true);
-      fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}&pageNumber=0&pageSize=5`)
+      fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}&${pageNumber}`)
       .then((response) => response.json())
       .then(
         (data) => {
@@ -23,7 +24,7 @@ export const StudentShowAll = () => {
           setLoading(false);
         }
       );
-    }, [searched]);
+    }, [searched, pageNumber]);
 
     
     return (
@@ -68,6 +69,16 @@ export const StudentShowAll = () => {
            </Table>
          </TableContainer>
        </div>
+       }
+       {pageNumber !== 0 &&
+        <Button onClick={() => {setPageNumber(pageNumber - 1)}}>
+          Previous
+        </Button>
+       }
+       {students.length <= 10 && 
+        <Button onClick={() => {setPageNumber(pageNumber + 1)}}>
+          Next
+        </Button>
        }
       </Container>
         

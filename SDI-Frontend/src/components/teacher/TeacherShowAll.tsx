@@ -1,4 +1,4 @@
-import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell } from "@mui/material";
+import { Container, TableContainer, Paper, Table, TableHead, TableRow, TableCell, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Classroom } from "../../models/Classroom";
@@ -6,14 +6,15 @@ import { Teacher } from "../../models/Teacher";
 
 export const TeacherShowAll = () => {
     const [teachers, setTeachers] = useState([])
+    const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
-      fetch("http://35.233.23.137/teachers?pageNumber=0&pageSize=5")
+      fetch(`http://35.233.23.137/teachers?pageNumber=${pageNumber}`)
       .then((response) => response.json())
       .then(
-        (data) => setTeachers(data)
+        (data) => setTeachers(data.content)
       );
-    }, []);
+    }, [pageNumber]);
     
     
     return (
@@ -51,6 +52,16 @@ export const TeacherShowAll = () => {
            </Table>
          </TableContainer>
        </div>
+       }
+       {pageNumber !== 0 &&
+        <Button onClick={() => {setPageNumber(pageNumber - 1)}}>
+          Previous
+        </Button>
+       }
+       {teachers.length <= 10 && 
+        <Button onClick={() => {setPageNumber(pageNumber + 1)}}>
+          Next
+        </Button>
        }
       </Container>
         
