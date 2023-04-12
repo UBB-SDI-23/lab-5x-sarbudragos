@@ -1,21 +1,27 @@
 import { SetStateAction, useEffect, useState } from "react"
 import { Classroom } from "../../models/Classroom"
 import Container from "@mui/material/Container/Container";
-import { Button, IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
+import { Button, CircularProgress, IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const ClassroomShowAll = () => {
     const [classrooms, setClassroom] = useState([])
+    const [loading, setLoading] = useState(false);
     const [valueToOrderBy, setValueToOrderBy] = useState("name")
     const [orderDirection, setOrderDirection] = useState("asc")
     const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
-      fetch(`http://35.233.23.137/classrooms?pageNumber=${pageNumber}`)
+      setLoading(true);
+      fetch(`${BACKEND_ADDR}/classrooms?pageNumber=${pageNumber}`)
       .then((response) => response.json())
       .then(
-        (data) => setClassroom(data.content)
+        (data) => {
+          setClassroom(data.content);
+          setLoading(false);
+      }
       );
     }, [pageNumber]);
 
@@ -58,7 +64,8 @@ export const ClassroomShowAll = () => {
     
     return (
       <Container>
-        {classrooms.length === 0 && <div>No classrooms.</div>}
+        {loading && <CircularProgress />}
+        {!loading && classrooms.length === 0 && <div>No classrooms.</div>}
         {(
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/classrooms/add`}>
 					<Tooltip title="Add a new course" arrow>
@@ -67,7 +74,7 @@ export const ClassroomShowAll = () => {
 				</IconButton>
 			)}
 
-       {classrooms.length > 0 &&
+       {!loading && classrooms.length > 0 &&
          <div className="App">
          <h1>All classrooms</h1>
          <TableContainer component={Paper}>

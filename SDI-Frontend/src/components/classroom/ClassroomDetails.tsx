@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ClassroomDTO } from "../../models/ClassroomDTO";
 import { Card, CardActions, CardContent, Container, IconButton } from "@mui/material";
 import { ArrowBack, DeleteForever, Edit } from "@mui/icons-material";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const ClassroomDetails = () => {
 	const {classroomId } = useParams();
@@ -21,7 +22,7 @@ export const ClassroomDetails = () => {
 			// TODO: use axios instead of fetch
 			// TODO: handle errors
 			// TODO: handle loading state
-			const response = await fetch(`http://35.233.23.137/classrooms/${classroomId}`);
+			const response = await fetch(`${BACKEND_ADDR}/classrooms/${classroomId}`);
 			const course = await response.json();
 			setClassroom(course);
 		};

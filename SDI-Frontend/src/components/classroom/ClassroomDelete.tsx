@@ -3,6 +3,7 @@ import { Alert, Button, Card, CardActions, CardContent, Container, IconButton } 
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const ClassroomDelete = () => {
 	const { classroomId } = useParams();
@@ -12,7 +13,7 @@ export const ClassroomDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`http://35.233.23.137/classrooms/${classroomId}`);
+		await axios.delete(`${BACKEND_ADDR}/classrooms/${classroomId}`);
         setOperationState("success");
 
 	};

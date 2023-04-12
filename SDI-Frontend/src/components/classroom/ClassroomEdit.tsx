@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Alert, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const ClassroomEdit = () => {
     const { classroomId } = useParams();
@@ -26,7 +27,7 @@ export const ClassroomEdit = () => {
 	const editClassroom = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`http://35.233.23.137/classrooms/${classroomId}`, classroom);
+			await axios.put(`${BACKEND_ADDR}/classrooms/${classroomId}`, classroom);
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

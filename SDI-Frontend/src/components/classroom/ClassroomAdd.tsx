@@ -5,6 +5,7 @@ import { Classroom } from "../../models/Classroom";
 import { ClassroomDTO } from "../../models/ClassroomDTO";
 import axios from "axios";
 import { ArrowBack } from "@mui/icons-material";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const ClassroomAdd = () => {
 
@@ -25,7 +26,7 @@ export const ClassroomAdd = () => {
 	const addClassroom = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`http://35.233.23.137/classrooms`, classroom);
+			await axios.post(`${BACKEND_ADDR}/classrooms`, classroom);
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

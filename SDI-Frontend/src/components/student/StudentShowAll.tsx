@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Student } from "../../models/Student";
 import {TextField} from "@mui/material";
+import { BACKEND_ADDR } from "../../backendAddress";
 
 export const StudentShowAll = () => {
     const [students, setStudents] = useState([])
@@ -16,7 +17,7 @@ export const StudentShowAll = () => {
 
     useEffect(() => {
       setLoading(true);
-      fetch(`http://35.233.23.137/students/grade-filter?grade=${searched}&${pageNumber}`)
+      fetch(`${BACKEND_ADDR}/students/grade-filter?grade=${searched}&pageNumber=${pageNumber}`)
       .then((response) => response.json())
       .then(
         (data) => {

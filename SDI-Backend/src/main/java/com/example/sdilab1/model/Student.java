@@ -13,7 +13,6 @@ public class Student {
 
     @Column
     private String firstName;
-
     @Column
     private String lastName;
     @Column
@@ -24,6 +23,9 @@ public class Student {
 
     @Column
     private String specialization;
+
+    @Column
+    private String address;
 
     @ManyToOne
     @JoinColumn(name="classroom_id")

@@ -43,7 +43,7 @@ public class StudentController {
     }
 
     @GetMapping(path="/students/grade-filter")
-    public @ResponseBody List<StudentDTO> getAllProductsWithWeightBiggerThan(@RequestParam Double grade,
+    public @ResponseBody List<StudentDTO> getAllStudentsWithWeightBiggerThan(@RequestParam Double grade,
                                                                              @RequestParam(defaultValue = "0") Integer pageNumber,
                                                                              @RequestParam(defaultValue = "10") Integer pageSize) {
         return service.getAllStudentsWithAverageGradeBiggerThan(grade, pageNumber, pageSize);
