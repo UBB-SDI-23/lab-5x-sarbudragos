@@ -5,85 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger">
-      <change afterPath="$PROJECT_DIR$/../.idea/lab-5x-sarbudragos.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/lab_4_sarbudragos_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/lab_4_sarbudragos_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_electronwill_night_config_core_3_6_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_electronwill_night_config_toml_3_6_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_flywaydb_flyway_core_9_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_flywaydb_flyway_maven_plugin_9_16_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_flywaydb_flyway_mysql_9_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_3_0_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_6_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_6_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_6_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_6_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.jpb/jpb-settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.jpb/persistence-units.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/ClassroomShowAllDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/StudentShowAllDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/SubjectShowAllDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherShowAllDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/UserProfile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V3__.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lab-4-sarbudragos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lab-4-sarbudragos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/SdiLab1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/SdiLab1Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/ClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/SubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/SubjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherSubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherSubjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Classroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/ClassroomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/ClassroomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/SubjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/TeacherRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/ClassroomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/ClassroomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/SubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/SubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherSubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherSubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/SdiLab1Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/SdiLab1Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/ClassroomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/ClassroomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/SubjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/SubjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/TeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/TeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Classroom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Classroom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Subject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Teacher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/ClassroomRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/ClassroomRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/SubjectRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/SubjectRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/TeacherRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/repository/TeacherRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/ClassroomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/ClassroomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/SubjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/SubjectService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/TeacherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/TeacherService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V1__.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V1__.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/db/migration/V2__.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db/migration/V2__.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V3__.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V3__.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/backendAddress.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/backendAddress.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/components/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/components/Menu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/components/classroom/ClassroomShowAll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/components/classroom/ClassroomShowAll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/components/student/StudentShowAll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/components/student/StudentShowAll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/components/teacher/TeacherShowAll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/components/teacher/TeacherShowAll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/models/Student.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/models/Student.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SDI-Frontend/src/models/StudentDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../SDI-Frontend/src/models/StudentDTO.ts" afterDir="false" />
     </list>
@@ -216,7 +147,7 @@
       <workItem from="1680446106296" duration="4349000" />
       <workItem from="1683532874178" duration="2226000" />
       <workItem from="1683728128805" duration="16369000" />
-      <workItem from="1683788706065" duration="5343000" />
+      <workItem from="1683788706065" duration="6363000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1680096000355</created>
