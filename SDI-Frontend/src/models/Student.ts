@@ -5,4 +5,5 @@ export interface Student{
     schoolYear: number;
     averageGrade: number;
     specialization: string;
+    address: string;
 }

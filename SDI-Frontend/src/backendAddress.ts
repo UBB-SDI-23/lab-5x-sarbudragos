@@ -1,1 +1,2 @@
-export const BACKEND_ADDR = "http://dragossarbu-SDI.twilightparadox.com"
+export const BACKEND_ADDR = "https://dragossarbu-SDI.twilightparadox.com/SDI-lab1"
+//export const BACKEND_ADDR = "http://localHost"

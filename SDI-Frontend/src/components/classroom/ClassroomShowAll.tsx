@@ -1,10 +1,12 @@
-import { SetStateAction, useEffect, useState } from "react"
+import { ReactNode, SetStateAction, useEffect, useState } from "react"
 import { Classroom } from "../../models/Classroom"
 import Container from "@mui/material/Container/Container";
-import { Button, CircularProgress, IconButton, Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
+import { Button, CircularProgress, FormControl, IconButton, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Table, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
+import { ClassroomShowAllDTO } from "../../models/ClassroomShowAllDTO";
+import { result } from "lodash";
 
 export const ClassroomShowAll = () => {
     const [classrooms, setClassroom] = useState([])
@@ -12,18 +14,21 @@ export const ClassroomShowAll = () => {
     const [valueToOrderBy, setValueToOrderBy] = useState("name")
     const [orderDirection, setOrderDirection] = useState("asc")
     const [pageNumber, setPageNumber] = useState(0)
+    const [pageSize, setPageSize] = useState(10)
+    const [pageCount, setPageCount] = useState(0)
 
     useEffect(() => {
       setLoading(true);
-      fetch(`${BACKEND_ADDR}/classrooms?pageNumber=${pageNumber}`)
+      fetch(`${BACKEND_ADDR}/classrooms?pageNumber=${pageNumber}&pageSize=${pageSize}`)
       .then((response) => response.json())
       .then(
         (data) => {
+          setPageCount(data.totalPages - 1)
           setClassroom(data.content);
           setLoading(false);
       }
       );
-    }, [pageNumber]);
+    }, [pageNumber, pageSize]);
 
     const descendingComparator = (a: any, b: any, orderBy:any) =>{
       if(b[orderBy] < a[orderBy]){
@@ -60,15 +65,47 @@ export const ClassroomShowAll = () => {
       })
       return stabilizedRowArray.map((el:any) => el[0])
     }
+
+    const visiblePageButtons = (pNumber: number, pCount: number) => {
+      var result = Array<number>();
+      if(pCount > 5){
+        for(var i = 1; i <= 5; i++){
+          result.push(i);
+        }
+        if(pNumber > 5){
+          result.push(-1);
+        }
+        for(var i = pNumber - 5; i <= pNumber + 5; i++){
+          console.log(i);
+          if(i > 5 && i < pCount - 5){
+
+            result.push(i);
+          }
+        }
+        if(pNumber < pCount - 5){
+          result.push(-1);
+        }
+
+        for(var i = pCount - 5; i <= pCount; i++){
+          result.push(i);
+        }
+      }
+      console.log(result);
+      return result;
+    }
     
     
+  function handlePageSizeChange(event: SelectChangeEvent<number>, child: ReactNode): void {
+    setPageSize(Number(event.target.value))
+  }
+
     return (
       <Container>
         {loading && <CircularProgress />}
         {!loading && classrooms.length === 0 && <div>No classrooms.</div>}
         {(
 				<IconButton component={Link} sx={{ mr: 3 }} to={`/classrooms/add`}>
-					<Tooltip title="Add a new course" arrow>
+					<Tooltip title="Add a new classroom" arrow>
 						<Add color="primary" />
 					</Tooltip>
 				</IconButton>
@@ -77,6 +114,20 @@ export const ClassroomShowAll = () => {
        {!loading && classrooms.length > 0 &&
          <div className="App">
          <h1>All classrooms</h1>
+         <FormControl>
+            <InputLabel id="demo-simple-select-label">Items per page</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={pageSize}
+              label="Items per page"
+              onChange={handlePageSizeChange}
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+</FormControl>
          <TableContainer component={Paper}>
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
@@ -127,10 +178,19 @@ export const ClassroomShowAll = () => {
                     Homeroom teacher
                   </TableSortLabel>
                 </TableCell>
+                <TableCell align="right">
+                <TableSortLabel
+                    active={valueToOrderBy === "studentsAverageGrade"}
+                    direction={valueToOrderBy === "studentsAverageGrade" && orderDirection === "desc"? "desc": "asc"}
+                    onClick={createSortHandler("studentsAverageGrade")}
+                  >
+                    Average grade
+                  </TableSortLabel>
+                </TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
-           {sortedRowInformation(classrooms, getComparator(orderDirection, valueToOrderBy)).map((classroom: Classroom, index: number) => (
+           {sortedRowInformation(classrooms, getComparator(orderDirection, valueToOrderBy)).map((classroom: ClassroomShowAllDTO, index: number) => (
             <TableRow key={classroom.id}>
               <TableCell component="th" scope="row">
                 {pageNumber*10 + index + 1}
@@ -144,12 +204,13 @@ export const ClassroomShowAll = () => {
               <TableCell align="right">{classroom.capacity}</TableCell>
               <TableCell align="right">{classroom.allocatedFunds}</TableCell>
               <TableCell align="right">{classroom.homeroomTeacher}</TableCell>
+              <TableCell align="right">{classroom.studentsAverageGrade}</TableCell>
               <TableCell align="right">
 										<IconButton
 											component={Link}
 											sx={{ mr: 3 }}
 											to={`/classrooms/${classroom.id}/details`}>
-											<Tooltip title="View course details" arrow>
+											<Tooltip title="View student details" arrow>
 												<ReadMore color="primary" />
 											</Tooltip>
 										</IconButton>
@@ -161,7 +222,7 @@ export const ClassroomShowAll = () => {
 										<IconButton component={Link} sx={{ mr: 3 }} to={`/classrooms/${classroom.id}/delete`}>
 											<DeleteForever sx={{ color: "red" }} />
 										</IconButton>
-									</TableCell>
+							</TableCell>
              </TableRow>
            ))}
            </Table>
@@ -169,17 +230,36 @@ export const ClassroomShowAll = () => {
          
        </div>
        }
-       {pageNumber !== 0 &&
+
+      {pageNumber !== 0 &&
         <Button onClick={() => {setPageNumber(pageNumber - 1)}}>
-          Previous
+          {"<"}
         </Button>
        }
-       {classrooms.length <= 10 && 
+       
+      {
+      visiblePageButtons(pageNumber.valueOf(), pageCount.valueOf()).map((pNumber: number) => {
+              if(pNumber >= 0){
+                return <Button onClick={() => {setPageNumber(pNumber)}}>
+                    {String(pNumber)}
+                </Button>
+              }
+              else{
+                return "...";
+              }
+            })
+
+        }
+
+      {pageNumber < pageCount && 
         <Button onClick={() => {setPageNumber(pageNumber + 1)}}>
-          Next
+          {">"}
         </Button>
        }
+       
       </Container>
+
+      
         
     )
   }

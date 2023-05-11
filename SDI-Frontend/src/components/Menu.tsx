@@ -30,6 +30,14 @@ export const Menu = () => {
 						sx={{ mr: 5 }}>
 						Classrooms
 					</Button>
+					<Button
+						variant={path.startsWith("/students") ? "outlined" : "text"}
+						to="/students"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}>
+						Students
+					</Button>
                     <Button
 						variant={path.startsWith("/teachers") ? "outlined" : "text"}
 						to="/teachers"
@@ -39,12 +47,20 @@ export const Menu = () => {
 						Teachers
 					</Button>
 					<Button
-						variant={path.startsWith("/students") ? "outlined" : "text"}
-						to="/students"
+						variant={path.startsWith("/subjects") ? "outlined" : "text"}
+						to="/subjects"
 						component={Link}
 						color="inherit"
 						sx={{ mr: 5 }}>
-						Students
+						Subjects
+					</Button>
+					<Button
+						variant={path.startsWith("/teacher-subjects") ? "outlined" : "text"}
+						to="/teacher-subjects"
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}>
+						TeacherSubjects
 					</Button>
 				</Toolbar>
 			</AppBar>

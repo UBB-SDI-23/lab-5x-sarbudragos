@@ -1,11 +1,10 @@
-import { Classroom } from "./Classroom";
-
-export interface StudentDTO{
+export interface StudentShowAllDTO{
     id: number;
     firstName: string;
     lastName: string;
     schoolYear: number;
     averageGrade: number;
-    classroom: Classroom;
+    specialization: string;
+    classroom: string;
     address: string;
 }
