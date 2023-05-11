@@ -1,6 +1,8 @@
 package com.example.sdilab1.model;
 
 
+import java.util.Set;
+
 public class TeacherDTO {
     private Integer id;
 
@@ -14,6 +16,8 @@ public class TeacherDTO {
     private Double salary;
 
     private String levelOfEducation;
+
+
 
     public TeacherDTO() {
     }

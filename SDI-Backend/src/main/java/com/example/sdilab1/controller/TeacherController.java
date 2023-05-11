@@ -1,8 +1,6 @@
 package com.example.sdilab1.controller;
 
-import com.example.sdilab1.model.Message;
-import com.example.sdilab1.model.Teacher;
-import com.example.sdilab1.model.TeacherDTO;
+import com.example.sdilab1.model.*;
 import com.example.sdilab1.service.TeacherService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,7 @@ public class TeacherController {
     }
 
     @GetMapping("/teachers")
-    Page<Teacher> getPage(@RequestParam(defaultValue = "10") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+    Page<TeacherShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
         return service.getPage(pageNumber, pageSize);
     }
 
@@ -42,7 +40,7 @@ public class TeacherController {
     }
 
     @PutMapping("/teachers/{id}")
-    ResponseEntity<Message> modifyTeacher(@RequestBody Teacher newTeacher, @PathVariable Integer id) throws Exception {
+    ResponseEntity<Message> modifyTeacher(@RequestBody Teacher newTeacher, @PathVariable Integer id) {
         try {
             service.modifyTeacher(newTeacher,id);
             return new ResponseEntity<>(new Message("OK"), HttpStatus.OK);
@@ -56,4 +54,8 @@ public class TeacherController {
         service.deleteTeacher(id);
     }
 
+    @GetMapping("/teachers/autocomplete")
+    public Page<Teacher> autoComplete(@RequestParam String query) {
+        return service.autoComplete(query);
+    }
 }

@@ -1,8 +1,10 @@
 package com.example.sdilab1.controller;
 
+import com.example.sdilab1.model.StudentShowAllDTO;
 import com.example.sdilab1.model.TeacherSubject;
 import com.example.sdilab1.model.TeacherSubjectDTO;
 import com.example.sdilab1.service.TeacherSubjectService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +19,9 @@ public class TeacherSubjectController {
     }
 
     @GetMapping("/teacher-subjects")
-    List<TeacherSubjectDTO> all() {
-        return service.all();
+    Page<TeacherSubjectDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getPage(pageNumber, pageSize);
     }
-
     @GetMapping("/teacher-subjects/{id}")
     TeacherSubjectDTO getById(@PathVariable Integer id) {
         return service.getById(id);

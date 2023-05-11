@@ -32,6 +32,11 @@ public class Student {
     @JsonIgnore
     private Classroom classroom;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonIgnore
+    private User user;
+
 
     public Student(String firstName, String lastName, Integer schoolYear, Double averageGrade, String specialization)
     {

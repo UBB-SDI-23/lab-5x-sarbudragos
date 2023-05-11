@@ -1,10 +1,8 @@
 package com.example.sdilab1.controller;
 
-import com.example.sdilab1.model.Subject;
-import com.example.sdilab1.model.SubjectDTO;
-import com.example.sdilab1.model.SubjectExperienceDTO;
-import com.example.sdilab1.model.SubjectSalaryDTO;
+import com.example.sdilab1.model.*;
 import com.example.sdilab1.service.SubjectService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +17,8 @@ public class SubjectController {
     }
 
     @GetMapping("/subjects")
-    List<SubjectDTO> all() {
-        return service.all();
+    Page<SubjectShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getPage(pageNumber, pageSize);
     }
 
     @GetMapping("/subjects/{id}")
@@ -43,12 +41,17 @@ public class SubjectController {
     }
 
     @GetMapping("/subjects/order-by-max-salary")
-    List<SubjectSalaryDTO> getOrderedByMaxSalary() {
-        return service.getSubjectsOrderedByMaximumSalary();
+    List<SubjectSalaryDTO> getOrderedByMaxSalary(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getSubjectsOrderedByMaximumSalary(pageNumber, pageSize);
     }
 
     @GetMapping("/subjects/order-by-average-years-of-experience")
-    List<SubjectExperienceDTO> getOrderedByAverageYearsOfExperience() {
-        return service.getSubjectsOrderedByAverageYearsOfExperience();
+    List<SubjectExperienceDTO> getOrderedByAverageYearsOfExperience(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+        return service.getSubjectsOrderedByAverageYearsOfExperience(pageNumber, pageSize);
     }
+    @GetMapping("/subjects/autocomplete")
+    public Page<Subject> autoComplete(@RequestParam String query){
+        return service.autoComplete(query);
+    }
+
 }

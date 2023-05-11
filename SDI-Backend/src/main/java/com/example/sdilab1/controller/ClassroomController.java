@@ -2,6 +2,8 @@ package com.example.sdilab1.controller;
 
 import com.example.sdilab1.model.Classroom;
 import com.example.sdilab1.model.ClassroomDTO;
+
+import com.example.sdilab1.model.ClassroomShowAllDTO;
 import com.example.sdilab1.model.Message;
 import com.example.sdilab1.service.ClassroomService;
 import org.springframework.data.domain.Page;
@@ -21,7 +23,7 @@ public class ClassroomController {
     }
 
     @GetMapping("/classrooms")
-    public Page<Classroom> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
+    public Page<ClassroomShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
         return service.getPage(pageNumber, pageSize);
     }
 
@@ -59,5 +61,10 @@ public class ClassroomController {
     @DeleteMapping("/classrooms/{id}")
     public void deleteClassroom(@PathVariable Integer id){
         service.deleteClassroom(id);
+    }
+
+    @GetMapping("/classrooms/autocomplete")
+    public Page<Classroom> autoComplete(@RequestParam String query){
+        return service.autoComplete(query);
     }
 }

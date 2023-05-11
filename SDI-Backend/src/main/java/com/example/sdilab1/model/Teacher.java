@@ -31,6 +31,11 @@ public class Teacher {
     @JsonIgnore
     Set<TeacherSubject> teacherSubjects;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonIgnore
+    private User user;
+
     public Teacher() {
     }
 

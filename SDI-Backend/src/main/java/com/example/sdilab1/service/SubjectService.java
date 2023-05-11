@@ -27,10 +27,10 @@ public class SubjectService {
                 .map(SubjectDTO::fromSubject).collect(Collectors.toList());
     }
 
-    public Page<Subject> getPage(Integer pageNumber, Integer pageSize){
+    public Page<SubjectShowAllDTO> getPage(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-        return subjectRepository.findAll(pageable);
+        return subjectRepository.findAll(pageable).map(SubjectShowAllDTO::fromSubject);
     }
 
     public SubjectDTO getById(Integer id) {
@@ -62,18 +62,22 @@ public class SubjectService {
         subjectRepository.deleteById(id);
     }
 
-    public List<SubjectSalaryDTO> getSubjectsOrderedByMaximumSalary(){
-        return subjectRepository.findAll().stream().map(subject -> SubjectSalaryDTO.fromSubject(subject,
+    public List<SubjectSalaryDTO> getSubjectsOrderedByMaximumSalary(Integer pageNumber, Integer pageSize){
+        return subjectRepository.findAll(PageRequest.of(pageNumber, pageSize)).stream().map(subject -> SubjectSalaryDTO.fromSubject(subject,
                         subject.getTeacherSubjects().stream().filter(
                         teacherSubject -> Objects.equals(teacherSubject.getSubject().getId(), subject.getId())
                     ).mapToDouble(teacherSubject -> teacherSubject.getTeacher().getSalary()).max().orElse(0.0)
                 )).sorted(Comparator.comparingDouble(SubjectSalaryDTO::getSalary)).collect(Collectors.toList());
     }
-    public List<SubjectExperienceDTO> getSubjectsOrderedByAverageYearsOfExperience(){
-        return subjectRepository.findAll().stream().map(subject -> SubjectExperienceDTO.fromSubject(subject,
+    public List<SubjectExperienceDTO> getSubjectsOrderedByAverageYearsOfExperience(Integer pageNumber, Integer pageSize){
+        return subjectRepository.findAll(PageRequest.of(pageNumber,pageSize)).stream().map(subject -> SubjectExperienceDTO.fromSubject(subject,
                  subject.getTeacherSubjects().stream().filter(
                         teacherSubject -> Objects.equals(teacherSubject.getSubject().getId(), subject.getId())
                 ).mapToDouble(TeacherSubject::getYearsOfExperience).average().orElse(0.0)
         )).sorted(Comparator.comparingDouble(SubjectExperienceDTO::getExperience)).collect(Collectors.toList());
+    }
+
+    public Page<Subject> autoComplete(String query) {
+        return subjectRepository.findAutoComplete(query, PageRequest.of(0, 5));
     }
 }

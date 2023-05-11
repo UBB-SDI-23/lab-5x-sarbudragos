@@ -1,15 +1,12 @@
 package com.example.sdilab1.service;
 
-import com.example.sdilab1.model.Classroom;
-import com.example.sdilab1.model.ClassroomDTO;
-import com.example.sdilab1.model.Student;
-import com.example.sdilab1.model.StudentDTO;
+import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,10 +29,10 @@ public class ClassroomService {
         return classroomRepository.findTop100ById();
     }
 
-    public Page<Classroom> getPage(Integer pageNumber, Integer pageSize){
+    public Page<ClassroomShowAllDTO> getPage(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-        return classroomRepository.findAll(pageable);
+        return classroomRepository.findAll(pageable).map(ClassroomShowAllDTO::fromClassroom);
     }
 
 
@@ -89,5 +86,9 @@ public class ClassroomService {
             return new ArrayList<>();
         }
         return classroom.getStudents().stream().map(StudentDTO::fromStudent).collect(Collectors.toList());
+    }
+
+    public Page<Classroom> autoComplete(String query) {
+        return classroomRepository.findAutoComplete(query, PageRequest.of(0, 5));
     }
 }

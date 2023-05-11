@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaLiquibaseChangesConfig">
+    <exclude-change idName="teacher_subject" tagName="createTable" />
+    <exclude-change idName="classrooms#allocated_funds" tagName="addColumn" />
+    <exclude-change idName="students#average_grade" tagName="addColumn" />
+    <exclude-change idName="students#first_name" tagName="addColumn" />
+    <exclude-change idName="students#last_name" tagName="addColumn" />
+    <exclude-change idName="students#school_year" tagName="addColumn" />
+    <exclude-change idName="teachers#first_name" tagName="addColumn" />
+    <exclude-change idName="teachers#last_name" tagName="addColumn" />
+    <exclude-change idName="teachers#level_of_education" tagName="addColumn" />
+    <exclude-change idName="teachersubject" tagName="dropTable" />
+    <exclude-change idName="classrooms#HomeroomTeacher" tagName="dropColumn" />
+    <exclude-change idName="classrooms#allocatedFunds" tagName="dropColumn" />
+    <exclude-change idName="students#averageGrade" tagName="dropColumn" />
+    <exclude-change idName="students#firstName" tagName="dropColumn" />
+    <exclude-change idName="students#lastName" tagName="dropColumn" />
+    <exclude-change idName="students#schoolYear" tagName="dropColumn" />
+    <exclude-change idName="teachers#firstName" tagName="dropColumn" />
+    <exclude-change idName="teachers#lastName" tagName="dropColumn" />
+    <exclude-change idName="teachers#levelOfEducation" tagName="dropColumn" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_TEACHER" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_SUBJECT" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_SUBJECT" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_TEACHER" tagName="addForeignKeyConstraint" />
+  </component>
+</project>

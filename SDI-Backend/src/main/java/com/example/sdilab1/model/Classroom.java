@@ -33,6 +33,10 @@ public class Classroom {
     @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonIgnore
+    private User user;
 
     public Classroom() {
     }

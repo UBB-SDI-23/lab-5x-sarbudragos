@@ -1,8 +1,6 @@
 package com.example.sdilab1.service;
 
-import com.example.sdilab1.model.Student;
-import com.example.sdilab1.model.Teacher;
-import com.example.sdilab1.model.TeacherDTO;
+import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.TeacherRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +24,10 @@ public class TeacherService {
                 .map(TeacherDTO::fromTeacher).collect(Collectors.toList());
     }
 
-    public Page<Teacher> getPage(Integer pageNumber, Integer pageSize){
+    public Page<TeacherShowAllDTO> getPage(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-        return teacherRepository.findAll(pageable);
+        return teacherRepository.findAll(pageable).map(TeacherShowAllDTO::fromTeacher);
     }
 
     public TeacherDTO getById(Integer id) {
@@ -76,4 +74,7 @@ public class TeacherService {
         teacherRepository.deleteById(id);
     }
 
+    public Page<Teacher> autoComplete(String query) {
+        return teacherRepository.findAutoComplete(query, PageRequest.of(0, 5));
+    }
 }

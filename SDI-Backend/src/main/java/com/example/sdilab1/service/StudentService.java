@@ -3,6 +3,7 @@ package com.example.sdilab1.service;
 import com.example.sdilab1.model.Classroom;
 import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
+import com.example.sdilab1.model.StudentShowAllDTO;
 import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
 import org.springframework.data.domain.Page;
@@ -29,10 +30,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Page<Student> getPage(Integer pageNumber, Integer pageSize){
+    public Page<StudentShowAllDTO> getPage(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
-        return studentRepository.findAll(pageable);
+        return studentRepository.findAll(pageable).map(StudentShowAllDTO::fromStudent);
     }
 
     public StudentDTO getById(Integer id) {
@@ -43,12 +44,25 @@ public class StudentService {
         return StudentDTO.fromStudent(student);
     }
 
-    public StudentDTO newStudent(StudentDTO newStudent){
+    public StudentDTO newStudent(StudentDTO newStudent) throws Exception {
+        if (newStudent.getAverageGrade() < 0){
+            throw new Exception("Student average grade can't be negative.");
+        }
+        if (newStudent.getSchoolYear() < 0){
+            throw new Exception("Student school year can't be negative.");
+        }
         studentRepository.save(StudentDTO.toStudent(newStudent));
         return newStudent;
     }
 
-    public Student modifyStudent(Student newStudent, Integer id){
+    public Student modifyStudent(Student newStudent, Integer id) throws Exception {
+        if (newStudent.getAverageGrade() < 0){
+            throw new Exception("Student average grade can't be negative.");
+        }
+        if (newStudent.getSchoolYear() < 0){
+            throw new Exception("Student school year can't be negative.");
+        }
+
         return studentRepository.findById(id)
                 .map(student -> {
                     student.setFirstName(newStudent.getFirstName());
@@ -68,8 +82,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<StudentDTO> getAllStudentsWithAverageGradeBiggerThan(Double grade, Integer pageNumber, Integer pageSize){
+    public List<StudentShowAllDTO> getAllStudentsWithAverageGradeBiggerThan(Double grade, Integer pageNumber, Integer pageSize){
         return this.getPage(pageNumber, pageSize).stream().filter(student -> student.getAverageGrade() > grade )
-                .map(StudentDTO::fromStudent).collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 }

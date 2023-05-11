@@ -1,5 +1,6 @@
 package com.example.sdilab1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +23,11 @@ public class TeacherSubject {
 
     @Column
     private String teachingDegree;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonIgnore
+    private User user;
 
     public TeacherSubject(Teacher teacher, Subject subject, Integer yearsOfExperience, String teachingDegree){
         this.teacher=teacher;
