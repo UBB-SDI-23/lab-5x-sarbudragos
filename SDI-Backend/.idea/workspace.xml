@@ -4,81 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_26.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/config/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/config/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/AuthenticationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Code.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/UserProfileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V4__.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V5__.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V6__.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/lab_4_sarbudragos_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/lab_4_sarbudragos_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c6cb4ab1-f427-4db6-97e6-cb88e830e5be.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c6cb4ab1-f427-4db6-97e6-cb88e830e5be.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/lab-4-sarbudragos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/lab-4-sarbudragos.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.jpb/jpb-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.jpb/jpb-settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/SdiLab1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/SdiLab1Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/ClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/SubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/SubjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherSubjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/controller/TeacherSubjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Classroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/ClassroomShowAllDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/ClassroomShowAllDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/StudentShowAllDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/StudentShowAllDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/SubjectShowAllDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/SubjectShowAllDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherShowAllDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherShowAllDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubjectDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/TeacherSubjectDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/model/UserProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/ClassroomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/ClassroomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/SubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/SubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherSubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sdilab1/service/TeacherSubjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V3__.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V3__.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/sdilab1/TestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/sdilab1/TestConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/SdiLab1Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/SdiLab1Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/ClassroomController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/ClassroomController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Classroom.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Classroom.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/ClassroomShowAllDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/ClassroomShowAllDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/StudentShowAllDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/StudentShowAllDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Subject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/SubjectShowAllDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/SubjectShowAllDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/Teacher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherShowAllDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherShowAllDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubjectDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/TeacherSubjectDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/UserProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/UserProfile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/ClassroomService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/ClassroomService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" afterDir="false" />
-    </list>
+    <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -219,7 +145,7 @@
       <workItem from="1684299727917" duration="46000" />
       <workItem from="1684323701114" duration="9584000" />
       <workItem from="1684336717998" duration="2250000" />
-      <workItem from="1684350945891" duration="4886000" />
+      <workItem from="1684350945891" duration="5104000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1680096000355</created>
