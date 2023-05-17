@@ -1,25 +1,24 @@
 package com.example.sdilab1.service;
-import com.example.sdilab1.model.TeacherShowAllDTO;
+import com.example.sdilab1.model.Teacher;
 import com.example.sdilab1.model.TeacherSubject;
 import com.example.sdilab1.model.TeacherSubjectDTO;
 
+import com.example.sdilab1.model.User;
 import com.example.sdilab1.repository.TeacherSubjectRepository;
+import com.example.sdilab1.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
+@RequiredArgsConstructor
 public class TeacherSubjectService {
     private final TeacherSubjectRepository teacherSubjectRepository;
 
-    public TeacherSubjectService(TeacherSubjectRepository teacherSubjectRepository){
+    private final UserRepository userRepository;
 
-        this.teacherSubjectRepository = teacherSubjectRepository;
-    }
 
     public Page<TeacherSubjectDTO> getPage(Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -35,8 +34,12 @@ public class TeacherSubjectService {
         return TeacherSubjectDTO.fromTeacherSubject(teacherSubject);
     }
 
-    public TeacherSubjectDTO newTeacherSubject(TeacherSubjectDTO teacherSubjectDTO){
-        teacherSubjectRepository.save(TeacherSubjectDTO.toTeacherSubject(teacherSubjectDTO));
+    public TeacherSubjectDTO newTeacherSubject(TeacherSubjectDTO teacherSubjectDTO, String username){
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        TeacherSubject newTeacherSubject = TeacherSubjectDTO.toTeacherSubject(teacherSubjectDTO);
+        newTeacherSubject.setUser(user);
+        teacherSubjectRepository.save(newTeacherSubject);
+        userRepository.save(user);
         return teacherSubjectDTO;
     }
 

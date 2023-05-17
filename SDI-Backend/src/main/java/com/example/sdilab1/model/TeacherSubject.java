@@ -79,4 +79,12 @@ public class TeacherSubject {
     public void setTeachingDegree(String teachingDegree) {
         this.teachingDegree = teachingDegree;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -13,17 +13,18 @@ public class TeacherSubjectDTO {
 
     private String teachingDegree;
 
-    public TeacherSubjectDTO(Integer id,Teacher teacher, Subject subject, Integer yearsOfExperience, String teachingDegree){
+    private User user;
+
+    public TeacherSubjectDTO(Integer id, Teacher teacher, Subject subject, Integer yearsOfExperience, String teachingDegree, User user){
         this.Id=id;
         this.teacher=teacher;
         this.subject=subject;
         this.yearsOfExperience = yearsOfExperience;
         this.teachingDegree = teachingDegree;
+        this.user = user;
     }
 
-    public TeacherSubjectDTO() {
 
-    }
 
     public Teacher getTeacher() {
         return teacher;
@@ -62,7 +63,8 @@ public class TeacherSubjectDTO {
                 teacherSubject.getId(),
                 teacherSubject.getTeacher(),
                 teacherSubject.getSubject(),
-                teacherSubject.getYearsOfExperience(), teacherSubject.getTeachingDegree());
+                teacherSubject.getYearsOfExperience(), teacherSubject.getTeachingDegree(),
+                teacherSubject.getUser());
     }
 
     public static TeacherSubject toTeacherSubject(TeacherSubjectDTO teacherSubjectDTO){
@@ -71,7 +73,7 @@ public class TeacherSubjectDTO {
         teacherSubject.setSubject(teacherSubjectDTO.getSubject());
         teacherSubject.setTeachingDegree(teacherSubjectDTO.getTeachingDegree());
         teacherSubject.setYearsOfExperience(teacherSubjectDTO.getYearsOfExperience());
-
+        teacherSubject.setUser(teacherSubjectDTO.user);
         return teacherSubject;
     }
 
@@ -81,5 +83,13 @@ public class TeacherSubjectDTO {
 
     public void setId(Integer id) {
         Id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

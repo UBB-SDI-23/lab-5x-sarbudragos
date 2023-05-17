@@ -2,11 +2,17 @@ package com.example.sdilab1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+
 
 @Entity
 @Table(name = "Classrooms")
@@ -122,5 +128,13 @@ public class Classroom {
 
     public void setAllocatedFunds(Double allocatedFunds) {
         this.allocatedFunds = allocatedFunds;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

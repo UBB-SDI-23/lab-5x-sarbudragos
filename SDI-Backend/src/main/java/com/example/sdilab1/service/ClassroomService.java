@@ -3,8 +3,9 @@ package com.example.sdilab1.service;
 import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
+import com.example.sdilab1.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,16 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ClassroomService {
 
     private final StudentRepository studentRepository;
     private final ClassroomRepository classroomRepository;
 
-    public ClassroomService(StudentRepository studentRepository, ClassroomRepository classroomRepository) {
-        this.studentRepository = studentRepository;
-        this.classroomRepository = classroomRepository;
-    }
-
+    private final UserRepository userRepository;
 
     public List<Classroom> all() {
         return classroomRepository.findTop100ById();
@@ -45,11 +43,17 @@ public class ClassroomService {
     }
 
 
-    public void newClassroom(ClassroomDTO newClassroomDTO) throws Exception {
+    public void newClassroom(ClassroomDTO newClassroomDTO, String username) throws Exception {
         if(newClassroomDTO.getCapacity() < 0){
             throw new Exception("Classroom capacity can't be negative.");
         }
-        classroomRepository.save(ClassroomDTO.toClassroom(newClassroomDTO));
+
+        Classroom newClassroom = ClassroomDTO.toClassroom(newClassroomDTO);
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        newClassroom.setUser(user);
+        classroomRepository.save(newClassroom);
+        userRepository.save(user);
+
     }
 
     public void addStudentsInBulk(List<Integer> student_ids, Integer id){

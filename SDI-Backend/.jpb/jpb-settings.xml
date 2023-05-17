@@ -24,5 +24,14 @@
     <exclude-change idName="FK_TEACHERSUBJECT_ON_SUBJECT" tagName="dropForeignKeyConstraint" />
     <exclude-change idName="FK_TEACHERSUBJECT_ON_SUBJECT" tagName="addForeignKeyConstraint" />
     <exclude-change idName="FK_TEACHERSUBJECT_ON_TEACHER" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="user_profiles" tagName="createTable" />
+    <exclude-change idName="classrooms#homeroom_teacher" tagName="addColumn" />
+    <exclude-change idName="users#userProfile_id" tagName="dropColumn" />
+    <exclude-change idName="users#user_profile_id" tagName="addColumn" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_USER" tagName="addForeignKeyConstraint" />
+    <exclude-change idName="userprofiles" tagName="dropTable" />
+    <exclude-change idName="FK_USERS_ON_USERPROFILE" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_TEACHERSUBJECT_ON_USER" tagName="dropForeignKeyConstraint" />
+    <exclude-change idName="FK_USERS_ON_USERPROFILE" tagName="addForeignKeyConstraint" />
   </component>
 </project>

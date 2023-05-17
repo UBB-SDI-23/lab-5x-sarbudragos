@@ -4,7 +4,6 @@ import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.Subject;
 import com.example.sdilab1.model.Teacher;
 import com.example.sdilab1.model.TeacherSubject;
-import com.example.sdilab1.repository.ClassroomRepository;
 import com.example.sdilab1.repository.StudentRepository;
 import com.example.sdilab1.repository.SubjectRepository;
 import com.example.sdilab1.service.StudentService;
@@ -28,7 +27,7 @@ public class TestConfiguration {
     @Bean
     @Primary
     public StudentService studentService() {
-        return new StudentService(studentRepository(), classroomRepository());
+        return new StudentService(studentRepository());
     }
 
 
@@ -50,10 +49,6 @@ public class TestConfiguration {
     }
 
 
-    public ClassroomRepository classroomRepository(){
-        return Mockito.mock(ClassroomRepository.class);
-    }
-
     @Bean
     @Primary
     public SubjectService subjectService(){
@@ -68,9 +63,9 @@ public class TestConfiguration {
         Teacher teacher_3 = new Teacher("Richard", "Feynman", 60, 5000.0, "PhD");
         teacher_3.setId(3);
 
-        Subject subject_1 = new Subject("Science");
+        Subject subject_1 = new Subject("Science", user);
         subject_1.setId(1);
-        Subject subject_2 = new Subject("Music");
+        Subject subject_2 = new Subject("Music", user);
         subject_2.setId(2);
 
         TeacherSubject teacherSubject_1 = new TeacherSubject(teacher_1, subject_1, 15, "1");

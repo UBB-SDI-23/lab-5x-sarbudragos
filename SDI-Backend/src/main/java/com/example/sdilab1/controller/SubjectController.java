@@ -1,7 +1,9 @@
 package com.example.sdilab1.controller;
 
+import com.example.sdilab1.config.JwtService;
 import com.example.sdilab1.model.*;
 import com.example.sdilab1.service.SubjectService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +11,11 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 public class SubjectController {
     private final SubjectService service;
 
-    public SubjectController(SubjectService service) {
-        this.service = service;
-    }
+    private final JwtService jwtService;
 
     @GetMapping("/subjects")
     Page<SubjectShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
@@ -27,8 +28,9 @@ public class SubjectController {
     }
 
     @PostMapping("/subjects")
-    SubjectDTO newSubject(@RequestBody SubjectDTO newSubject){
-        return service.newSubject(newSubject);
+    SubjectDTO newSubject(@RequestBody SubjectDTO newSubject, @RequestHeader(name="Authorization") String token){
+        String username = jwtService.extractUsername(token.substring(7));
+        return service.newSubject(newSubject, username);
     }
 
     @PutMapping("/subjects/{id}")
