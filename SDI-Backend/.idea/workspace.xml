@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger" />
+    <list default="true" id="d290715b-65c2-4d0b-959c-ff809c122dbf" name="Changes" comment="2 - add swagger">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/config/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/config/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/controller/StudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/UserProfile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/model/UserProfile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/StudentService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/sdilab1/service/UserService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +153,7 @@
       <workItem from="1684299727917" duration="46000" />
       <workItem from="1684323701114" duration="9584000" />
       <workItem from="1684336717998" duration="2250000" />
-      <workItem from="1684350945891" duration="5104000" />
+      <workItem from="1684350945891" duration="6099000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1680096000355</created>

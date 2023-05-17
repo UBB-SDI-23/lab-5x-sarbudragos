@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping(name = "/user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable Integer id){
         return ResponseEntity.ok(userService.getById(id));
     }
 
-    @GetMapping(name = "/user/getByUsername/{username}")
+    @GetMapping("/user/getByUsername/{username}")
     public ResponseEntity<UserDTO> getByUsername(@PathVariable String username){
         return ResponseEntity.ok(userService.getByUserName(username));
     }
 
-    @PutMapping(name = "/user/{id}/userProfile")
+    @PutMapping("/user/{id}/userProfile")
     public ResponseEntity<Message> setUserProfile(@RequestBody UserProfile userProfile, @PathVariable Integer userId){
         try {
             userService.setUserProfile(userProfile, userId);
