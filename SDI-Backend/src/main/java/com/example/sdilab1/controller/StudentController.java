@@ -1,10 +1,12 @@
 package com.example.sdilab1.controller;
 
+import com.example.sdilab1.config.JwtService;
 import com.example.sdilab1.model.Message;
 import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
 import com.example.sdilab1.model.StudentShowAllDTO;
 import com.example.sdilab1.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +16,12 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService service;
 
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
+    private final JwtService jwtService;
 
     @GetMapping("/students")
     Page<StudentShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
@@ -33,9 +34,10 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    ResponseEntity<Message> newStudent(@RequestBody StudentDTO newStudent){
+    ResponseEntity<Message> newStudent(@RequestBody StudentDTO newStudent, @RequestHeader(name="Authorization") String token){
         try {
-            service.newStudent(newStudent);
+            String username = jwtService.extractUsername(token.substring(7));
+            service.newStudent(newStudent, username);
             return new ResponseEntity<>(new Message("OK"), HttpStatus.OK);
         }
         catch (Exception e){

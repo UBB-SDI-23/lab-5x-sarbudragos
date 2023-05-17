@@ -2,6 +2,8 @@ package com.example.sdilab1.service;
 
 import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.SubjectRepository;
+import com.example.sdilab1.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +15,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SubjectService {
     private final SubjectRepository subjectRepository;
 
-    public SubjectService(SubjectRepository subjectRepository){
-
-        this.subjectRepository = subjectRepository;
-
-    }
+    private final UserRepository userRepository;
 
     public List<SubjectDTO> all() {
         return subjectRepository.findAll().stream()
@@ -41,8 +40,12 @@ public class SubjectService {
         return SubjectDTO.fromSubject(subject);
     }
 
-    public SubjectDTO newSubject(SubjectDTO newSubject){
-        subjectRepository.save(SubjectDTO.toSubject(newSubject));
+    public SubjectDTO newSubject(SubjectDTO newSubject, String username){
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        Subject newSubjectObject = SubjectDTO.toSubject(newSubject);
+        newSubjectObject.setUser(user);
+        subjectRepository.save(newSubjectObject);
+        userRepository.save(user);
         return newSubject;
     }
 

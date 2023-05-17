@@ -1,7 +1,12 @@
 package com.example.sdilab1.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClassroomShowAllDTO {
     private Integer id;
     private String name;
@@ -13,20 +18,9 @@ public class ClassroomShowAllDTO {
 
     private Double allocatedFunds;
 
-    public ClassroomShowAllDTO() {
-    }
-
-    public ClassroomShowAllDTO(Integer id, String name, String location, Integer capacity, String homeroomTeacher, Double allocatedFunds, List<Student> students) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.capacity = capacity;
-        this.homeroomTeacher = homeroomTeacher;
-        this.allocatedFunds = allocatedFunds;
-        this.students = students;
-    }
-
     List<Student> students;
+
+    private User user;
 
     public Integer getId() {
         return id;
@@ -65,7 +59,8 @@ public class ClassroomShowAllDTO {
                 classroom.getCapacity(),
                 classroom.getHomeroomTeacher(),
                 classroom.getAllocatedFunds(),
-                classroom.getStudents()
+                classroom.getStudents(),
+                classroom.getUser()
         );
     }
 
@@ -77,7 +72,7 @@ public class ClassroomShowAllDTO {
         classroom.setCapacity(classroomDTO.getCapacity());
         classroom.setHomeroomTeacher(classroomDTO.getHomeroomTeacher());
         classroom.setAllocatedFunds(classroomDTO.getAllocatedFunds());
-
+        classroom.setUser(classroomDTO.getUser());
         return classroom;
     }
 
@@ -103,6 +98,14 @@ public class ClassroomShowAllDTO {
 
     public void setAllocatedFunds(Double allocatedFunds) {
         this.allocatedFunds = allocatedFunds;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

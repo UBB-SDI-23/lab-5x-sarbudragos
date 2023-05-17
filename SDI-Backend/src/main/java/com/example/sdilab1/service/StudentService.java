@@ -1,11 +1,12 @@
 package com.example.sdilab1.service;
 
-import com.example.sdilab1.model.Classroom;
 import com.example.sdilab1.model.Student;
 import com.example.sdilab1.model.StudentDTO;
 import com.example.sdilab1.model.StudentShowAllDTO;
-import com.example.sdilab1.repository.ClassroomRepository;
+import com.example.sdilab1.model.User;
 import com.example.sdilab1.repository.StudentRepository;
+import com.example.sdilab1.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,21 +16,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
 
-    private final ClassroomRepository classroomRepository;
-
-    public StudentService(StudentRepository studentRepository, ClassroomRepository classroomRepository) {
-        this.studentRepository = studentRepository;
-        this.classroomRepository = classroomRepository;
-    }
-
-    public List<Student> all() {
-        return studentRepository.findAll();
-    }
-
+    private final UserRepository userRepository;
     public Page<StudentShowAllDTO> getPage(Integer pageNumber, Integer pageSize){
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
@@ -44,18 +36,21 @@ public class StudentService {
         return StudentDTO.fromStudent(student);
     }
 
-    public StudentDTO newStudent(StudentDTO newStudent) throws Exception {
+    public void newStudent(StudentDTO newStudent, String username) throws Exception {
         if (newStudent.getAverageGrade() < 0){
             throw new Exception("Student average grade can't be negative.");
         }
         if (newStudent.getSchoolYear() < 0){
             throw new Exception("Student school year can't be negative.");
         }
-        studentRepository.save(StudentDTO.toStudent(newStudent));
-        return newStudent;
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        Student student = StudentDTO.toStudent(newStudent);
+        student.setUser(user);
+        studentRepository.save(student);
+        userRepository.save(user);
     }
 
-    public Student modifyStudent(Student newStudent, Integer id) throws Exception {
+    public void modifyStudent(Student newStudent, Integer id) throws Exception {
         if (newStudent.getAverageGrade() < 0){
             throw new Exception("Student average grade can't be negative.");
         }
@@ -63,7 +58,7 @@ public class StudentService {
             throw new Exception("Student school year can't be negative.");
         }
 
-        return studentRepository.findById(id)
+        studentRepository.findById(id)
                 .map(student -> {
                     student.setFirstName(newStudent.getFirstName());
                     student.setLastName(newStudent.getLastName());

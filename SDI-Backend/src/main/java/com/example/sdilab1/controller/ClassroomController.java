@@ -1,11 +1,10 @@
 package com.example.sdilab1.controller;
 
-import com.example.sdilab1.model.Classroom;
-import com.example.sdilab1.model.ClassroomDTO;
+import com.example.sdilab1.config.JwtService;
+import com.example.sdilab1.model.*;
 
-import com.example.sdilab1.model.ClassroomShowAllDTO;
-import com.example.sdilab1.model.Message;
 import com.example.sdilab1.service.ClassroomService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin
+@RequiredArgsConstructor
 @RestController
 public class ClassroomController {
     private final ClassroomService service;
 
-    public ClassroomController(ClassroomService service) {
-        this.service = service;
-    }
+    private final JwtService jwtService;
 
     @GetMapping("/classrooms")
     public Page<ClassroomShowAllDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
@@ -33,9 +31,10 @@ public class ClassroomController {
     }
 
     @PostMapping("/classrooms")
-    public ResponseEntity<Message> newClassroom(@RequestBody ClassroomDTO newClassroom){
+    public ResponseEntity<Message> newClassroom(@RequestBody ClassroomDTO newClassroom, @RequestHeader(name="Authorization") String token){
         try {
-            service.newClassroom(newClassroom);
+            String username = jwtService.extractUsername(token.substring(7));
+            service.newClassroom(newClassroom, username);
             return new ResponseEntity<>(new Message("OK"), HttpStatus.OK);
         }
         catch (Exception e){

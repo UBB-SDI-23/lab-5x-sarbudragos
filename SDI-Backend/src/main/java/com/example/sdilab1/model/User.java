@@ -2,11 +2,24 @@ package com.example.sdilab1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Users")
-public class User {
+public class User implements UserDetails {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Integer id;
 
@@ -16,45 +29,78 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne
-    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="userProfile_id", referencedColumnName = "id")
     private UserProfile userProfile;
 
-    private transient BCryptPasswordEncoder passwordEncoder;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public User() {
+    @JsonIgnore
+    @Column(name = "is_active")
+    private Boolean isActive;
 
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Classroom> classrooms;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Student> students;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Teacher> teachers;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Subject> subjects;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<TeacherSubject> teacherSubjects;
+
+    @Column(name = "items_per_page")
+    private Integer itemsPerPage;
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEnabled() {
+        return isActive;
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = passwordEncoder.encode(password);
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
 }

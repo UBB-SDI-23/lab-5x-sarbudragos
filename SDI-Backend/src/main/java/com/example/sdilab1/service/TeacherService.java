@@ -2,6 +2,8 @@ package com.example.sdilab1.service;
 
 import com.example.sdilab1.model.*;
 import com.example.sdilab1.repository.TeacherRepository;
+import com.example.sdilab1.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,13 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class TeacherService {
     private final TeacherRepository teacherRepository;
 
-    public TeacherService(TeacherRepository teacherRepository){
-
-        this.teacherRepository = teacherRepository;
-    }
+    private final UserRepository userRepository;
 
     public List<TeacherDTO> all() {
         return teacherRepository.findAll().stream()
@@ -38,14 +38,18 @@ public class TeacherService {
         return TeacherDTO.fromTeacher(teacher);
     }
 
-    public TeacherDTO newTeacher(TeacherDTO newTeacher) throws Exception {
+    public TeacherDTO newTeacher(TeacherDTO newTeacher, String username) throws Exception {
         if (newTeacher.getAge() < 0){
             throw new Exception("Teacher age can't be negative.");
         }
         if (newTeacher.getSalary() < 0){
             throw new Exception("Teacher salary can't be negative.");
         }
-        teacherRepository.save(TeacherDTO.toTeacher(newTeacher));
+        User user = userRepository.findUserByUsername(username).orElseThrow();
+        Teacher newTeacherObject = TeacherDTO.toTeacher(newTeacher);
+        newTeacherObject.setUser(user);
+        teacherRepository.save(newTeacherObject);
+        userRepository.save(user);
         return newTeacher;
     }
 

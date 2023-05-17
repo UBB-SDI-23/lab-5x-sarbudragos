@@ -1,5 +1,8 @@
 package com.example.sdilab1.model;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class StudentShowAllDTO {
     private Integer id;
     private String firstName;
@@ -10,15 +13,7 @@ public class StudentShowAllDTO {
     private String specialization;
     private Classroom classroom;
 
-    public StudentShowAllDTO(Integer id,String firstName, String lastName, Integer schoolYear, Double averageGrade, String specialization, Classroom classroom) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.schoolYear = schoolYear;
-        this.averageGrade = averageGrade;
-        this.specialization = specialization;
-        this.classroom = classroom;
-    }
+    private User user;
 
 
     public String getClassroom() {
@@ -70,13 +65,14 @@ public class StudentShowAllDTO {
 
     public static StudentShowAllDTO fromStudent(Student student) {
         return new StudentShowAllDTO(
-                Math.toIntExact(student.getId()),
+                student.getId(),
                 student.getFirstName(),
                 student.getLastName(),
                 student.getSchoolYear(),
                 student.getAverageGrade(),
                 student.getSpecialization(),
-                student.getClassroom()
+                student.getClassroom(),
+                student.getUser()
         );
     }
 

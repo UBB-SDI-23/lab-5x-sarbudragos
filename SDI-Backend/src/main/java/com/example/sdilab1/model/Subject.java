@@ -27,9 +27,10 @@ public class Subject {
 
     }
 
-    public Subject(String name){
+    public Subject(String name, User user){
 
         this.name = name;
+        this.user = user;
     }
 
     public String getName() {
@@ -54,5 +55,13 @@ public class Subject {
 
     public void setTeacherSubjects(Set<TeacherSubject> teacherSubjects) {
         this.teacherSubjects = teacherSubjects;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

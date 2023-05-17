@@ -9,13 +9,13 @@ public class SubjectShowAllDTO {
 
     private Set<TeacherSubject> teacherSubjects;
 
-    public SubjectShowAllDTO(){
-    }
+    private User user;
 
-    public SubjectShowAllDTO(Integer id , String name, Set<TeacherSubject> teacherSubjects){
+    public SubjectShowAllDTO(Integer id , String name, Set<TeacherSubject> teacherSubjects, User user){
         this.id = id;
         this.name = name;
         this.teacherSubjects = teacherSubjects;
+        this.user = user;
     }
 
     public String getName() {
@@ -38,11 +38,20 @@ public class SubjectShowAllDTO {
         return teacherSubjects.stream().mapToInt(TeacherSubject::getYearsOfExperience).average().orElse(0);
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public static SubjectShowAllDTO fromSubject(Subject subject){
         return new SubjectShowAllDTO(
                 subject.getId(),
                 subject.getName(),
-                subject.getTeacherSubjects());
+                subject.getTeacherSubjects(),
+                subject.getUser());
     }
 
     public static Subject toSubject(SubjectShowAllDTO subjectDTO){
@@ -50,7 +59,7 @@ public class SubjectShowAllDTO {
         subject.setId(subjectDTO.getId());
         subject.setName(subjectDTO.getName());
         subject.setTeacherSubjects(subjectDTO.teacherSubjects);
-
+        subject.setUser(subjectDTO.user);
         return subject;
     }
 }

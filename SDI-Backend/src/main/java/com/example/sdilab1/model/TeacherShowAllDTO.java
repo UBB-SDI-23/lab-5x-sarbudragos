@@ -18,10 +18,9 @@ public class TeacherShowAllDTO {
 
     private Set<TeacherSubject> teacherSubjects;
 
-    public TeacherShowAllDTO() {
-    }
+    private User user;
 
-    public TeacherShowAllDTO(Integer id, String firstName, String lastName, Integer age, Double salary, String levelOfEducation, Set<TeacherSubject> teacherSubjects) {
+    public TeacherShowAllDTO(Integer id, String firstName, String lastName, Integer age, Double salary, String levelOfEducation, Set<TeacherSubject> teacherSubjects, User user) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +28,7 @@ public class TeacherShowAllDTO {
         this.salary = salary;
         this.levelOfEducation = levelOfEducation;
         this.teacherSubjects = teacherSubjects;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -83,6 +83,14 @@ public class TeacherShowAllDTO {
         return teacherSubjects.stream().mapToInt(TeacherSubject::getYearsOfExperience).max().orElse(0);
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public static TeacherShowAllDTO fromTeacher(Teacher teacher){
         return new TeacherShowAllDTO(
                 teacher.getId(),
@@ -91,7 +99,8 @@ public class TeacherShowAllDTO {
                 teacher.getAge(),
                 teacher.getSalary(),
                 teacher.getLevelOfEducation(),
-                teacher.getTeacherSubjects());
+                teacher.getTeacherSubjects(),
+                teacher.getUser());
     }
 
     public static Teacher toTeacher(TeacherShowAllDTO teacherDTO){
@@ -103,7 +112,7 @@ public class TeacherShowAllDTO {
         teacher.setSalary(teacherDTO.getSalary());
         teacher.setLevelOfEducation(teacherDTO.getLevelOfEducation());
         teacher.setTeacherSubjects(teacherDTO.teacherSubjects);
-
+        teacher.setUser(teacherDTO.user);
         return teacher;
     }
 }

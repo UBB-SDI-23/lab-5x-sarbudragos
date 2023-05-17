@@ -1,9 +1,11 @@
 package com.example.sdilab1.controller;
 
+import com.example.sdilab1.config.JwtService;
 import com.example.sdilab1.model.StudentShowAllDTO;
 import com.example.sdilab1.model.TeacherSubject;
 import com.example.sdilab1.model.TeacherSubjectDTO;
 import com.example.sdilab1.service.TeacherSubjectService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +13,11 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 public class TeacherSubjectController {
     private final TeacherSubjectService service;
 
-    public TeacherSubjectController(TeacherSubjectService service) {
-        this.service = service;
-    }
+    private final JwtService jwtService;
 
     @GetMapping("/teacher-subjects")
     Page<TeacherSubjectDTO> getPage(@RequestParam(defaultValue = "0") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize) {
@@ -28,8 +29,9 @@ public class TeacherSubjectController {
     }
 
     @PostMapping("/teacher-subjects")
-    TeacherSubjectDTO newTeacher(@RequestBody TeacherSubjectDTO newTeacherSubject){
-        return service.newTeacherSubject(newTeacherSubject);
+    TeacherSubjectDTO newTeacher(@RequestBody TeacherSubjectDTO newTeacherSubject, @RequestHeader(name="Authorization") String token){
+        String username = jwtService.extractUsername(token.substring(7));
+        return service.newTeacherSubject(newTeacherSubject, username);
     }
 
     @PutMapping("/teacher-subjects/{id}")
