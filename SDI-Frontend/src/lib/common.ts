@@ -26,6 +26,8 @@ export function getItemsPerPageFromStorage() {
     return Number(itemsPerPage);
 };
 
+
+
 export async function getAuthenticatedUser() {
   const defaultReturnObject = { authenticated: false, user: {
     "id": 0,
