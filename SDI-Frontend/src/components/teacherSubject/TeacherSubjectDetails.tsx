@@ -5,8 +5,11 @@ import { Card, CardActions, CardContent, Container, IconButton } from "@mui/mate
 import { ArrowBack, DeleteForever, Edit } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { TeacherSubject } from "../../models/TeacherSubject";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherSubjectDetails = () => {
+	const {user, authenticated} = useUser()
 	const {teacherSubjectId } = useParams();
 	const [teacherSubject, setTeacherSubject] = useState<TeacherSubject>({
         "id": 0,
@@ -23,7 +26,26 @@ export const TeacherSubjectDetails = () => {
             "name": "",
         },
         "teachingDegree": "",
-        "yearsOfExperience": 0
+        "yearsOfExperience": 0,
+		"user": {
+			"id": 0,
+        "username": "",
+        "userProfile": {
+            "id": 0,
+            "bio": "",
+            "location": "",
+            "birthDay": new Date(),
+            "gender": "",
+            "maritalStatus": "",
+         },
+        "itemsPerPage": 0,
+        "role": "",
+        "numberOfClassrooms":0,
+        "numberOfStudents":0,
+        "numberOfSubjects":0,
+        "numberOfTeacherSubjects":0,
+        "numberOfTeachers":0
+		}
         });
 
 	useEffect(() => {
@@ -31,7 +53,12 @@ export const TeacherSubjectDetails = () => {
 			// TODO: use axios instead of fetch
 			// TODO: handle errors
 			// TODO: handle loading state
-			const response = await fetch(`${BACKEND_ADDR}/teacher-subjects/${teacherSubjectId}`);
+			const response = await fetch(`${BACKEND_ADDR}/teacher-subjects/${teacherSubjectId}`,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			const course = await response.json();
 			setTeacherSubject(course);
 		};

@@ -1,3 +1,5 @@
+import { UserDTO } from "./UserDTO";
+
 export interface TeacherShowAllDTO{
     id: number;
     firstName: string;
@@ -6,4 +8,5 @@ export interface TeacherShowAllDTO{
     salary: number;
     levelOfEducation: string;
     highestYearsOfExperience: number;
+    user: UserDTO;
 }

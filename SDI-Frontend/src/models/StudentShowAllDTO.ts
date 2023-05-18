@@ -1,3 +1,5 @@
+import { UserDTO } from "./UserDTO";
+
 export interface StudentShowAllDTO{
     id: number;
     firstName: string;
@@ -7,4 +9,5 @@ export interface StudentShowAllDTO{
     specialization: string;
     classroom: string;
     address: string;
+    user: UserDTO;
 }

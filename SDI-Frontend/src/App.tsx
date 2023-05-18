@@ -28,6 +28,10 @@ import { TeacherSubjectAdd } from './components/teacherSubject/TeacherSubjectAdd
 import { TeacherSubjectDetails } from './components/teacherSubject/TeacherSubjectDetails'
 import { TeacherSubjectEdit } from './components/teacherSubject/TeacherSubjectEdit'
 import { TeacherSubjectDelete } from './components/teacherSubject/TeacherSubjectDelete'
+import { LogInPage } from './components/authentication/LogInPage'
+import { SignUpPage } from './components/authentication/SignUpPage'
+import { ActivationPage } from './components/authentication/ActivationPage'
+import { UserProfile } from './components/users/UserProfile'
 
 function App() {
 
@@ -39,6 +43,10 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/login" element={<LogInPage/>} />
+                <Route path="/register" element={<SignUpPage/>} />
+                <Route path="/register/confirm/:code" element={<ActivationPage/>} />
+                <Route path="/user/:userId" element={<UserProfile/>} />
                 <Route path="/teachers" element={<TeacherShowAll />} />
                 <Route path="/teachers/add" element={<TeacherAdd />} />
                 <Route path="/teachers/:teacherId/details" element={<TeacherDetails />} />

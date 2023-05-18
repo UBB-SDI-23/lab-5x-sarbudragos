@@ -7,14 +7,16 @@ import { BACKEND_ADDR } from "../../backendAddress";
 import { Classroom } from "../../models/Classroom";
 import { debounce } from "lodash";
 import { SubjectShowAllDTO } from "../../models/SubjectShowAllDTO";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
+import { Subject } from "../../models/Subject";
 
 export const SubjectAdd = () => {
+	const {user, authenticated} = useUser()
 
-	const [subject, setsubject] = useState<SubjectShowAllDTO>({
+	const [subject, setsubject] = useState<Subject>({
         "id": 0,
-        "name": "",
-        "averageYearsOfExperience": 0
-        
+        "name": ""
       });
 
     const[operationState, setOperationState] = useState<String>("none");
@@ -23,7 +25,12 @@ export const SubjectAdd = () => {
 		event.preventDefault();
 		try {
             
-			await axios.post(`${BACKEND_ADDR}/subjects`, subject);
+			await axios.post(`${BACKEND_ADDR}/subjects`, subject,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");
@@ -84,16 +91,7 @@ export const SubjectAdd = () => {
 							sx={{ mb: 2 }}
 							onChange={(event) => setsubject({ ...subject, name: event.target.value })}
 						/>
-                        <TextField
-							id="name"
-							label="Name"
-							variant="outlined"
-							fullWidth
-							sx={{ mb: 2 }}
-							onChange={(event) => setsubject({ ...subject, averageYearsOfExperience: Number(event.target.value) })}
-						/>
 						
-
 						<Button type="submit">Add subject</Button>
 					</form>
 				</CardContent>

@@ -5,15 +5,23 @@ import { Classroom } from "../../models/Classroom";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { SubjectShowAllDTO } from "../../models/SubjectShowAllDTO";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const SubjectShowAll = () => {
+  const {user, authenticated} = useUser()
     const [subjects, setsubjects] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       setLoading(true);
-      fetch(`${BACKEND_ADDR}/subjects?pageNumber=${pageNumber}`)
+      fetch(`${BACKEND_ADDR}/subjects?pageNumber=${pageNumber}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`
+        }
+      })
       .then((response) => response.json())
       .then(
         (data) => {
@@ -44,8 +52,8 @@ export const SubjectShowAll = () => {
 							<TableRow>
 								<TableCell>#</TableCell>
 								<TableCell align="right">Name</TableCell>
-								
-                                <TableCell align="right">Average years of experience</TableCell>
+                <TableCell align="right">Average years of experience</TableCell>
+                <TableCell align="right">User</TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -56,6 +64,11 @@ export const SubjectShowAll = () => {
               </TableCell>
               <TableCell align="right">{subject.name}</TableCell>
               <TableCell align="right">{subject.averageYearsOfExperience}</TableCell>
+              <TableCell scope="row">
+                <Link title="View user details" to={`/user/${subject.user.id}`}>
+                  {subject.user.username}
+                </Link>
+              </TableCell>
               <TableCell align="right">
 										<IconButton
 											component={Link}

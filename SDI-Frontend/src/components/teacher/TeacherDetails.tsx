@@ -5,8 +5,11 @@ import { Card, CardActions, CardContent, Container, IconButton } from "@mui/mate
 import { ArrowBack, DeleteForever, Edit } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { Teacher } from "../../models/Teacher";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherDetails = () => {
+	const {user, authenticated} = useUser()
 	const {teacherId } = useParams();
 	const [teacher, setTeacher] = useState<Teacher>({
         "id": 0,
@@ -22,7 +25,12 @@ export const TeacherDetails = () => {
 			// TODO: use axios instead of fetch
 			// TODO: handle errors
 			// TODO: handle loading state
-			const response = await fetch(`${BACKEND_ADDR}/teachers/${teacherId}`);
+			const response = await fetch(`${BACKEND_ADDR}/teachers/${teacherId}`,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			const course = await response.json();
 			setTeacher(course);
 		};

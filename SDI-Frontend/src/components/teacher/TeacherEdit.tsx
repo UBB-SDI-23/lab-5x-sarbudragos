@@ -5,8 +5,11 @@ import { Alert, Button, Card, CardActions, CardContent, Container, IconButton, T
 import { ArrowBack } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { Teacher } from "../../models/Teacher";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherEdit = () => {
+	const {user, authenticated} = useUser()
     const { teacherId } = useParams();
 	const navigate = useNavigate();
 
@@ -29,7 +32,12 @@ export const TeacherEdit = () => {
                 setOperationState("error");
                 return;
             }
-			await axios.put(`${BACKEND_ADDR}/teachers/${teacherId}`, teacher);
+			await axios.put(`${BACKEND_ADDR}/teachers/${teacherId}`, teacher,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

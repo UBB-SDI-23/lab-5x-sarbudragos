@@ -1,9 +1,11 @@
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "../lib/customHooks";
 
 
 export const Menu = () => {
 	const location = useLocation();
+	const {user, authenticated} = useUser()
 	const path = location.pathname;
 
 	return (
@@ -61,6 +63,14 @@ export const Menu = () => {
 						color="inherit"
 						sx={{ mr: 5 }}>
 						TeacherSubjects
+					</Button>
+					<Button
+						variant={path.startsWith("/user") ? "outlined" : "text"}
+						to={`/user/${user.id}`}
+						component={Link}
+						color="inherit"
+						sx={{ mr: 5 }}>
+						This user
 					</Button>
 				</Toolbar>
 			</AppBar>

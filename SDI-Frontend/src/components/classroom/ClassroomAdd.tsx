@@ -6,8 +6,11 @@ import { ClassroomDTO } from "../../models/ClassroomDTO";
 import axios from "axios";
 import { ArrowBack } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const ClassroomAdd = () => {
+	const {user, authenticated} = useUser()
 
 	const [classroom, setClassroom] = useState<ClassroomDTO>({
         "id": 0,
@@ -26,7 +29,18 @@ export const ClassroomAdd = () => {
 	const addClassroom = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_ADDR}/classrooms`, classroom);
+			if(classroom.capacity < 0){
+                setOperationState("error");
+                return;
+            }
+			await axios.post(`${BACKEND_ADDR}/classrooms`, classroom,
+			{
+				headers:
+				{
+					Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  }
+			);
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

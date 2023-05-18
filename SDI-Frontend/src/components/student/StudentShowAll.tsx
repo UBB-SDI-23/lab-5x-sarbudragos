@@ -6,6 +6,8 @@ import {TextField} from "@mui/material";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
 import { StudentShowAllDTO } from "../../models/StudentShowAllDTO";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const StudentShowAll = () => {
     const [students, setStudents] = useState([])
@@ -14,6 +16,7 @@ export const StudentShowAll = () => {
     const [pageNumber, setPageNumber] = useState(0)
     const [pageSize, setPageSize] = useState(10)
     const [pageCount, setPageCount] = useState(0)
+    const {user, authenticated} = useUser()
 
     const handleTextFieldChange = (event: { target: { value: string; }; }) => {
       setSearched(+event.target.value)
@@ -21,7 +24,12 @@ export const StudentShowAll = () => {
 
     useEffect(() => {
       setLoading(true);
-      fetch(`${BACKEND_ADDR}/students/grade-filter?grade=${searched}&pageNumber=${pageNumber}`)
+      fetch(`${BACKEND_ADDR}/students/grade-filter?grade=${searched}&pageNumber=${pageNumber}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`
+        }
+      })
       .then((response) => response.json())
       .then(
         (data) => {
@@ -107,6 +115,7 @@ export const StudentShowAll = () => {
                 <TableCell align="right">Specialization</TableCell>
                 <TableCell align="right">Address</TableCell>
                 <TableCell align="right">Classroom</TableCell>
+                <TableCell align="right">User</TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -126,6 +135,11 @@ export const StudentShowAll = () => {
               <TableCell align="right">{student.specialization}</TableCell>
               <TableCell align="right">{student.address}</TableCell>
               <TableCell align="right">{student.classroom}</TableCell>
+              <TableCell scope="row">
+                <Link title="View user details" to={`/user/${student.user.id}`}>
+                  {student.user.username}
+                </Link>
+              </TableCell>
               <TableCell align="right">
 										<IconButton
 											component={Link}
