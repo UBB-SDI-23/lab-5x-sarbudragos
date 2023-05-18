@@ -5,10 +5,14 @@ import axios from "axios";
 import { Alert, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const ClassroomEdit = () => {
     const { classroomId } = useParams();
+	const {user, authenticated} = useUser()
 	const navigate = useNavigate();
+
 
     const[operationState, setOperationState] = useState<String>("none");
 
@@ -27,7 +31,18 @@ export const ClassroomEdit = () => {
 	const editClassroom = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`${BACKEND_ADDR}/classrooms/${classroomId}`, classroom);
+			if(classroom.capacity < 0){
+                setOperationState("error");
+                return;
+            }
+			await axios.post(`${BACKEND_ADDR}/classrooms/${classroomId}`, classroom,
+			{
+				headers:
+				{
+					Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  }
+			);
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

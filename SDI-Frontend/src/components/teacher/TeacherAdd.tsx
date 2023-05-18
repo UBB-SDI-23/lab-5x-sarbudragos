@@ -8,8 +8,12 @@ import { BACKEND_ADDR } from "../../backendAddress";
 import { Classroom } from "../../models/Classroom";
 import { debounce } from "lodash";
 import { Teacher } from "../../models/Teacher";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherAdd = () => {
+
+	const {user, authenticated} = useUser()
 
 	const [teacher, setTeacher] = useState<Teacher>({
         "id": 0,
@@ -29,7 +33,12 @@ export const TeacherAdd = () => {
                 setOperationState("error");
                 return;
             }
-			await axios.post(`${BACKEND_ADDR}/teachers`, teacher);
+			await axios.post(`${BACKEND_ADDR}/teachers`, teacher,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

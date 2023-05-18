@@ -6,15 +6,23 @@ import { Teacher } from "../../models/Teacher";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { TeacherShowAllDTO } from "../../models/TeacherShowAllDTO";
 import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherShowAll = () => {
+  const {user, authenticated} = useUser()
     const [teachers, setTeachers] = useState([])
     const [pageNumber, setPageNumber] = useState(0)
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       setLoading(true);
-      fetch(`${BACKEND_ADDR}/teachers?pageNumber=${pageNumber}`)
+      fetch(`${BACKEND_ADDR}/teachers?pageNumber=${pageNumber}`,
+      {
+        headers: {
+          Authorization: `Bearer ${getTokenFromLocalStorage()}`
+        }
+      })
       .then((response) => response.json())
       .then(
         (data) => {
@@ -50,6 +58,7 @@ export const TeacherShowAll = () => {
                 <TableCell align="right">Salary</TableCell>
                 <TableCell align="right">Level of education</TableCell>
                 <TableCell align="right">Highest years of experience</TableCell>
+                <TableCell align="right">User</TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
@@ -64,6 +73,11 @@ export const TeacherShowAll = () => {
               <TableCell align="right">{teacher.salary}</TableCell>
               <TableCell align="right">{teacher.levelOfEducation}</TableCell>
               <TableCell align="right">{teacher.highestYearsOfExperience}</TableCell>
+              <TableCell scope="row">
+                <Link title="View user details" to={`/user/${teacher.user.id}`}>
+                  {teacher.user.username}
+                </Link>
+              </TableCell>
               <TableCell align="right">
 										<IconButton
 											component={Link}

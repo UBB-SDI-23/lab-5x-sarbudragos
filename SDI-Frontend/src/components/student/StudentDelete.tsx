@@ -4,8 +4,11 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BACKEND_ADDR } from "../../backendAddress";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const StudentDelete = () => {
+	const {user, authenticated} = useUser()
 	const { studentId } = useParams();
 	const navigate = useNavigate();
 
@@ -13,7 +16,12 @@ export const StudentDelete = () => {
 
 	const handleDelete = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		await axios.delete(`${BACKEND_ADDR}/students/${studentId}`);
+		await axios.delete(`${BACKEND_ADDR}/students/${studentId}`,
+		{
+			headers: {
+			  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+			}
+		  });
         setOperationState("success");
 
 	};

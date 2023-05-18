@@ -7,6 +7,8 @@ import { Add, DeleteForever, Edit, ReadMore } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
 import { ClassroomShowAllDTO } from "../../models/ClassroomShowAllDTO";
 import { result } from "lodash";
+import { useUser } from "../../lib/customHooks";
+import { getAuthenticatedUser, getItemsPerPageFromStorage, getTokenFromLocalStorage } from "../../lib/common";
 
 export const ClassroomShowAll = () => {
     const [classrooms, setClassroom] = useState([])
@@ -14,12 +16,26 @@ export const ClassroomShowAll = () => {
     const [valueToOrderBy, setValueToOrderBy] = useState("name")
     const [orderDirection, setOrderDirection] = useState("asc")
     const [pageNumber, setPageNumber] = useState(0)
-    const [pageSize, setPageSize] = useState(10)
     const [pageCount, setPageCount] = useState(0)
+    const {user, authenticated} = useUser()
+    const [pageSize, setPageSize] = useState(user.itemsPerPage)
 
     useEffect(() => {
-      setLoading(true);
-      fetch(`${BACKEND_ADDR}/classrooms?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+      const renderClassrooms = async () => {
+        setLoading(true);
+
+      var uu = await getAuthenticatedUser();
+
+      setPageSize(uu.user.itemsPerPage);
+    
+      
+      fetch(`${BACKEND_ADDR}/classrooms?pageNumber=${pageNumber}&pageSize=${getItemsPerPageFromStorage()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getTokenFromLocalStorage()}`
+          }
+        }
+       )
       .then((response) => response.json())
       .then(
         (data) => {
@@ -28,6 +44,8 @@ export const ClassroomShowAll = () => {
           setLoading(false);
       }
       );
+      }
+      renderClassrooms()
     }, [pageNumber, pageSize]);
 
     const descendingComparator = (a: any, b: any, orderBy:any) =>{
@@ -114,20 +132,6 @@ export const ClassroomShowAll = () => {
        {!loading && classrooms.length > 0 &&
          <div className="App">
          <h1>All classrooms</h1>
-         <FormControl>
-            <InputLabel id="demo-simple-select-label">Items per page</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={pageSize}
-              label="Items per page"
-              onChange={handlePageSizeChange}
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-</FormControl>
          <TableContainer component={Paper}>
          <Table sx={{ minWidth: 650 }} aria-label="simple table">
 						<TableHead>
@@ -187,15 +191,16 @@ export const ClassroomShowAll = () => {
                     Average grade
                   </TableSortLabel>
                 </TableCell>
+                <TableCell align="center">Users</TableCell>
 								<TableCell align="center">Operations</TableCell>
 							</TableRow>
 						</TableHead>
            {sortedRowInformation(classrooms, getComparator(orderDirection, valueToOrderBy)).map((classroom: ClassroomShowAllDTO, index: number) => (
             <TableRow key={classroom.id}>
-              <TableCell component="th" scope="row">
+              <TableCell scope="row">
                 {pageNumber*10 + index + 1}
               </TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell  scope="row">
                 <Link title="View classroom details" to={`/classrooms/${classroom.id}/details`}>
                   {classroom.name}
                 </Link>
@@ -205,12 +210,17 @@ export const ClassroomShowAll = () => {
               <TableCell align="right">{classroom.allocatedFunds}</TableCell>
               <TableCell align="right">{classroom.homeroomTeacher}</TableCell>
               <TableCell align="right">{classroom.studentsAverageGrade}</TableCell>
+              <TableCell scope="row">
+                <Link title="View user details" to={`/user/${classroom.user.id}`}>
+                  {classroom.user.username}
+                </Link>
+              </TableCell>
               <TableCell align="right">
 										<IconButton
 											component={Link}
 											sx={{ mr: 3 }}
 											to={`/classrooms/${classroom.id}/details`}>
-											<Tooltip title="View student details" arrow>
+											<Tooltip title="View classroom details" arrow>
 												<ReadMore color="primary" />
 											</Tooltip>
 										</IconButton>
@@ -263,3 +273,7 @@ export const ClassroomShowAll = () => {
         
     )
   }
+
+function UserDTO(user: never) {
+  throw new Error("Function not implemented.");
+}

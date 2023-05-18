@@ -13,6 +13,8 @@ public class StudentShowAllDTO {
     private String specialization;
     private Classroom classroom;
 
+    private String address;
+
     private User user;
 
 
@@ -72,6 +74,7 @@ public class StudentShowAllDTO {
                 student.getAverageGrade(),
                 student.getSpecialization(),
                 student.getClassroom(),
+                student.getAddress(),
                 student.getUser()
         );
     }
@@ -83,6 +86,7 @@ public class StudentShowAllDTO {
         student.setAverageGrade(studentDTO.getAverageGrade());
         student.setSchoolYear(studentDTO.getSchoolYear());
         student.setSpecialization(studentDTO.getSpecialization());
+        student.setAddress(studentDTO.address);
         student.setClassroom(studentDTO.classroom);
         return student;
     }
@@ -93,5 +97,21 @@ public class StudentShowAllDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

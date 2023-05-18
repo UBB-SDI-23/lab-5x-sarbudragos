@@ -39,13 +39,14 @@ public class Student {
     private User user;
 
 
-    public Student(String firstName, String lastName, Integer schoolYear, Double averageGrade, String specialization)
+    public Student(String firstName, String lastName, Integer schoolYear, Double averageGrade, String specialization, String address)
     {
         this.firstName = firstName;
         this.lastName = lastName;
         this.schoolYear = schoolYear;
         this.averageGrade = averageGrade;
         this.specialization = specialization;
+        this.address = address;
     }
 
     public Student() {
@@ -138,5 +139,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

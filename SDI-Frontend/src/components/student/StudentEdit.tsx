@@ -5,8 +5,11 @@ import axios from "axios";
 import { Alert, Button, Card, CardActions, CardContent, Container, IconButton, TextField } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { BACKEND_ADDR } from "../../backendAddress";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const StudentEdit = () => {
+	const {user, authenticated} = useUser()
     const { studentId } = useParams();
 	const navigate = useNavigate();
 
@@ -33,7 +36,16 @@ export const StudentEdit = () => {
 	const editstudent = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`${BACKEND_ADDR}/students/${studentId}`, student);
+            if(student.averageGrade < 0 || student.schoolYear < 0){
+                setOperationState("error");
+                return;
+            }
+			await axios.put(`${BACKEND_ADDR}/students/${studentId}`, student,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

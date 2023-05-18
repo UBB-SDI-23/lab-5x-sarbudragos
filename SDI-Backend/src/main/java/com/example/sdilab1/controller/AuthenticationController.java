@@ -7,6 +7,7 @@ import com.example.sdilab1.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class AuthenticationController {
 

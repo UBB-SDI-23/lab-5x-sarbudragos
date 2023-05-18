@@ -32,11 +32,11 @@ public class TestConfiguration {
 
 
     public StudentRepository studentRepository() {
-        Student RECORD_1 = new Student("Dragos", "Sarbu", 12, 9.9, "CS");
+        Student RECORD_1 = new Student("Dragos", "Sarbu", 12, 9.9, "CS", address);
         RECORD_1.setId(1);
-        Student RECORD_2 = new Student("Darius","Bors", 11, 8.9, "CS");
+        Student RECORD_2 = new Student("Darius","Bors", 11, 8.9, "CS", address);
         RECORD_2.setId(2);
-        Student RECORD_3 = new Student("Andrei", "Pascu", 10, 7.4, "SN");
+        Student RECORD_3 = new Student("Andrei", "Pascu", 10, 7.4, "SN", address);
         RECORD_3.setId(3);
 
         StudentRepository studentRepository = Mockito.mock(StudentRepository.class);

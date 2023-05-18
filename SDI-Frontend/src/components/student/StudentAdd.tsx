@@ -7,9 +7,11 @@ import { BACKEND_ADDR } from "../../backendAddress";
 import { StudentDTO } from "../../models/StudentDTO";
 import { Classroom } from "../../models/Classroom";
 import { debounce } from "lodash";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const StudentAdd = () => {
-
+	const {user, authenticated} = useUser()
 	const [student, setStudent] = useState<StudentDTO>({
         "id": 0,
         "firstName": "",
@@ -37,7 +39,12 @@ export const StudentAdd = () => {
                 setOperationState("error");
                 return;
             }
-			await axios.post(`${BACKEND_ADDR}/students`, student);
+			await axios.post(`${BACKEND_ADDR}/students`, student,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");
@@ -50,7 +57,12 @@ export const StudentAdd = () => {
 	const fetchSuggestions = async (query: string) => {
 		try {
 			const response = await axios.get<{content: Classroom[]}>(
-				`${BACKEND_ADDR}/classrooms/autocomplete?query=${query}`
+				`${BACKEND_ADDR}/classrooms/autocomplete?query=${query}`,
+				{
+					headers: {
+					  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+					}
+				  }
 			);
 			const data = await response.data.content;
 

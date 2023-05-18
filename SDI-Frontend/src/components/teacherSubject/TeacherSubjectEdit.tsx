@@ -8,8 +8,11 @@ import { TeacherSubject } from "../../models/TeacherSubject";
 import { Teacher } from "../../models/Teacher";
 import { Subject } from "../../models/Subject";
 import { debounce } from "lodash";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherSubjectEdit = () => {
+	const {user, authenticated} = useUser()
     const { teacherSubjectId } = useParams();
 	const navigate = useNavigate();
 
@@ -30,13 +33,37 @@ export const TeacherSubjectEdit = () => {
             "name": "",
         },
         "teachingDegree": "",
-        "yearsOfExperience": 0
+        "yearsOfExperience": 0,
+		"user": {
+			"id": 0,
+        "username": "",
+        "userProfile": {
+            "id": 0,
+            "bio": "",
+            "location": "",
+            "birthDay": new Date(),
+            "gender": "",
+            "maritalStatus": "",
+         },
+        "itemsPerPage": 0,
+        "role": "",
+        "numberOfClassrooms":0,
+        "numberOfStudents":0,
+        "numberOfSubjects":0,
+        "numberOfTeacherSubjects":0,
+        "numberOfTeachers":0
+		}
         });
 
 	const editTeacherSubject = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.put(`${BACKEND_ADDR}/teacher-subjects/${teacherSubjectId}`, teacherSubject);
+			await axios.put(`${BACKEND_ADDR}/teacher-subjects/${teacherSubjectId}`, teacherSubject,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");
@@ -47,7 +74,12 @@ export const TeacherSubjectEdit = () => {
 	const addteacherSubject = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		try {
-			await axios.post(`${BACKEND_ADDR}/teacherSubjects`, teacherSubject);
+			await axios.post(`${BACKEND_ADDR}/teacherSubjects`, teacherSubject,
+			{
+				headers: {
+				  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+				}
+			  });
 			setOperationState("success");
 		} catch (error) {
             setOperationState("error");

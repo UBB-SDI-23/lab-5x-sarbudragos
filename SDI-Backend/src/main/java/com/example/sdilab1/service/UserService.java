@@ -42,4 +42,12 @@ public class UserService {
         userRepository.save(user);
         userProfileRepository.save(userProfile);
     }
+
+    public void setItemsPerPage(Integer newItemsPerPage, Integer userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+
+        user.setItemsPerPage(newItemsPerPage);
+
+        userRepository.save(user);
+    }
 }

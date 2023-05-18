@@ -10,8 +10,11 @@ import { debounce } from "lodash";
 import { TeacherSubject } from "../../models/TeacherSubject";
 import { Teacher } from "../../models/Teacher";
 import { Subject } from "../../models/Subject";
+import { useUser } from "../../lib/customHooks";
+import { getTokenFromLocalStorage } from "../../lib/common";
 
 export const TeacherSubjectAdd = () => {
+	const {user, authenticated} = useUser()
 
 	const [teacherSubject, setTeacherSubject] = useState<TeacherSubject>({
         "id": 0,
@@ -28,7 +31,26 @@ export const TeacherSubjectAdd = () => {
             "name": "",
         },
         "teachingDegree": "",
-        "yearsOfExperience": 0
+        "yearsOfExperience": 0,
+		"user": {
+			"id": 0,
+        "username": "",
+        "userProfile": {
+            "id": 0,
+            "bio": "",
+            "location": "",
+            "birthDay": new Date(),
+            "gender": "",
+            "maritalStatus": "",
+         },
+        "itemsPerPage": 0,
+        "role": "",
+        "numberOfClassrooms":0,
+        "numberOfStudents":0,
+        "numberOfSubjects":0,
+        "numberOfTeacherSubjects":0,
+        "numberOfTeachers":0
+		}
         });
 
     const[operationState, setOperationState] = useState<String>("none");
@@ -49,7 +71,12 @@ export const TeacherSubjectAdd = () => {
 	const fetchSuggestions = async (query: string) => {
 		try {
 			const response = await axios.get<{content: Teacher[]}>(
-				`${BACKEND_ADDR}/teachers/autocomplete?query=${query}`
+				`${BACKEND_ADDR}/teachers/autocomplete?query=${query}`,
+				{
+					headers: {
+					  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+					}
+				  }
 			);
 			const data = await response.data.content;
 
@@ -74,7 +101,12 @@ export const TeacherSubjectAdd = () => {
 	const fetchSubjectSuggestions = async (query: string) => {
 		try {
 			const response = await axios.get<{content: Subject[]}>(
-				`${BACKEND_ADDR}/subjects/autocomplete?query=${query}`
+				`${BACKEND_ADDR}/subjects/autocomplete?query=${query}`,
+				{
+					headers: {
+					  Authorization: `Bearer ${getTokenFromLocalStorage()}`
+					}
+				  }
 			);
 			const data = await response.data.content;
 
